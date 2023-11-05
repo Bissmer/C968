@@ -2,12 +2,12 @@
 
 namespace InventoryManagementSystem
 {
-    public class Outsourced : Part
+    public class InHouse : Part
     {
-        public string CompanyName { get; set; }
+        public int MachineID { get; set; }
 
-        public Outsourced(int partId, string name, decimal price, int inStock, int min, int max,
-            string companyName)
+        public InHouse(int partId, string name, decimal price, int inStock, int min, int max,
+            string machineId)
         {
             PartId = Convert.ToInt32(partId);
             Name = name;
@@ -15,7 +15,7 @@ namespace InventoryManagementSystem
             InStock = Convert.ToInt32(inStock);
             Min = Convert.ToInt32(min);
             Max = Convert.ToInt32(max);
-            CompanyName = companyName;
+            MachineID = Convert.ToInt32(machineId);
         }
     }
 }

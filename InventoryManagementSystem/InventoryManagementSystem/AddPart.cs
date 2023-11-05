@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InventoryManagementSystem
@@ -17,39 +10,64 @@ namespace InventoryManagementSystem
             InitializeComponent();
         }
 
+        //saving information on Save button click in Add part form
         private void saveAddPartBtn_Click(object sender, EventArgs e)
         {
-            string partId = idAddPartTextBox.Text;
-            string name = nameAddPartTextBox.Text;
-            string inStock = inventoryAddPartTextBox.Text;
-            string price = priceAddPartTextBox.Text;
-            string max = maxAddPartTextBox.Text;
-            string min = minAddPartTextBox.Text;
-            string companyName = outsourcedRadioAddPart.Checked ? companyNameAddPartTextBox.Text : String.Empty;
+            int partId = int.Parse(addPartIdtTextBox.Text);
+            string name = addPartNameTextBox.Text;
+            string companyName = addPartOutsourcedRadio.Checked ? addPartMachineCompanyTextBox.Text : String.Empty;
+            string machineID = addPartInHouseRadio.Checked ? addPartMachineCompanyTextBox.Text : String.Empty;
+            int inStock;
+            decimal price;
+            int max;
+            int min;
 
-            if (outsourcedRadioAddPart.Checked)
+            try
+            {
+                inStock = int.Parse(addPartInventoryTextBox.Text);
+                price = decimal.Parse(addPartPriceTextBox.Text);
+                min = int.Parse(addPartMinTextBox.Text);
+                max = int.Parse(addPartMaxTextBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Input error: Inventory, Price, Min, Max fields should have numeric values");
+            }
+
+            inStock = int.Parse(addPartInventoryTextBox.Text);
+            price = decimal.Parse(addPartPriceTextBox.Text);
+            min = int.Parse(addPartMinTextBox.Text);
+            max = int.Parse(addPartMaxTextBox.Text);
+
+
+            if (addPartOutsourcedRadio.Checked)
             {
                 Outsourced outsourcedPart = new Outsourced(partId, name, price, inStock, max, min, companyName);
-                //added this for testing purpose, this should be go to Inventory then
+                //added this for testing purpose, this should go to Inventory then
                 Part.Parts.Add(outsourcedPart);
                 this.Close();
             }
+
+            if (addPartInHouseRadio.Checked)
+            {
+                InHouse inhousePart = new InHouse(partId, name, price, inStock, max, min, machineID);
+                //added this for testing purpose, this function should go to Inventory then
+                Part.Parts.Add(inhousePart);
+                this.Close();
+            }
+
         }
 
+        //changing the field composition depending on the radio click
         private void outsourcedRadioAddPart_CheckedChanged(object sender, EventArgs e)
         {
-            machineIdLabel.Visible = false;
-            machineIdAddPartTextBox.Visible = false;
-            companyNameLabel.Visible = true;
-            companyNameAddPartTextBox.Visible = true;
+            addPartMachineCompanyLabel.Text = "Company Name";
         }
 
         private void inHouseRadioAddPart_CheckedChanged(object sender, EventArgs e)
         {
-            machineIdLabel.Visible = true;
-            machineIdAddPartTextBox.Visible = true;
-            companyNameLabel.Visible = false;
-            companyNameAddPartTextBox.Visible = false;
+            addPartMachineCompanyLabel.Text = "Machine ID";
         }
+
     }
 }

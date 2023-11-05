@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InventoryManagementSystem
 {
@@ -19,7 +15,7 @@ namespace InventoryManagementSystem
 
         //binding list is added for test purpose
         public static BindingList<Part> Parts = new BindingList<Part>();
-        public Part(string partId, string name, string price, string inStock, string min, string max)
+        public Part(int partId, string name, decimal price, int inStock, int min, int max)
         {
             PartId = Convert.ToInt32(partId);
             Name = name;

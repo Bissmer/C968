@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagementSystem
 {
-    partial class formMain
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -102,6 +102,7 @@
             this.partsTableGrid.Name = "partsTableGrid";
             this.partsTableGrid.Size = new System.Drawing.Size(621, 250);
             this.partsTableGrid.TabIndex = 28;
+            this.partsTableGrid.SelectionChanged += new System.EventHandler(this.partsTableGrid_SelectionChanged);
             // 
             // productsSearchTextBox
             // 
@@ -140,12 +141,14 @@
             // 
             // modifyPartsMainButton
             // 
+            this.modifyPartsMainButton.Enabled = false;
             this.modifyPartsMainButton.Location = new System.Drawing.Point(483, 409);
             this.modifyPartsMainButton.Name = "modifyPartsMainButton";
             this.modifyPartsMainButton.Size = new System.Drawing.Size(98, 23);
             this.modifyPartsMainButton.TabIndex = 23;
             this.modifyPartsMainButton.Text = "Modify";
             this.modifyPartsMainButton.UseVisualStyleBackColor = true;
+            this.modifyPartsMainButton.Click += new System.EventHandler(this.modifyPartsMainButton_Click);
             // 
             // addPartsMainButton
             // 
@@ -203,7 +206,7 @@
             this.parstLabel.TabIndex = 34;
             this.parstLabel.Text = "Parts";
             // 
-            // formMain
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -225,7 +228,7 @@
             this.Controls.Add(this.partsSearchButton);
             this.Controls.Add(this.PartsMainFormLabel);
             this.Controls.Add(this.mainFormLabel);
-            this.Name = "formMain";
+            this.Name = "MainForm";
             this.Text = "Main Form";
             ((System.ComponentModel.ISupportInitialize)(this.productsTableGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partsTableGrid)).EndInit();

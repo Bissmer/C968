@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InventoryManagementSystem
 {
-    public partial class formMain : Form
+    public partial class MainForm : Form
     {
 
-        public formMain()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -28,5 +21,32 @@ namespace InventoryManagementSystem
             var part = new addPart();
             part.ShowDialog();
         }
+
+        private void modifyPartsMainButton_Click(object sender, EventArgs e)
+        {
+            if (partsTableGrid.CurrentRow.DataBoundItem.GetType() == typeof(InventoryManagementSystem.InHouse))
+            {
+                InHouse inhousePart = (InHouse)partsTableGrid.CurrentRow.DataBoundItem;
+                new ModifyPart(inhousePart).ShowDialog();
+            }
+            else
+            {
+                Outsourced outsourcedPart = (Outsourced)partsTableGrid.CurrentRow.DataBoundItem;
+                new ModifyPart(outsourcedPart).ShowDialog();
+            }
+        }
+        //enable modify button when row is selected
+        private void partsTableGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (partsTableGrid.SelectedRows.Count > 0)
+            {
+                modifyPartsMainButton.Enabled = true;
+            }
+            else
+            {
+                modifyPartsMainButton.Enabled = false;
+            }
+        }
     }
 }
+
