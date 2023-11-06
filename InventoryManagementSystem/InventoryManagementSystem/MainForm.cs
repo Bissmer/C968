@@ -18,6 +18,7 @@ namespace InventoryManagementSystem
 
         private void addPartsMainButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             var part = new addPart();
             part.ShowDialog();
         }
