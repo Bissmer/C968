@@ -1,10 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace InventoryManagementSystem
 {
     public partial class ModifyPart : Form
     {
-        private MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
+        public MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
         public ModifyPart()
         {
             InitializeComponent();
@@ -38,5 +39,54 @@ namespace InventoryManagementSystem
             modifyPartMachineCompanyTextBox.Text = outsourcedPart.CompanyName;
         }
 
+        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
+        {
+            this.Hide();
+            mainForm.ShowDialog();
+        }
+
+        private void saveModifyPartBtn_Click(object sender, System.EventArgs e)
+        {
+            int partId = int.Parse(modifyPartIdTextBox.Text);
+            string name = modifyPartNameTextBox.Text;
+            string companyName = modifyPartOutsourcedRadio.Checked ? modifyPartMachineCompanyTextBox.Text : String.Empty;
+            int machineID;
+            int inStock;
+            decimal price;
+            int max;
+            int min;
+
+
+
+            inStock = int.Parse(modifyPartIdTextBox.Text);
+            price = decimal.Parse(modifyPartPriceTextBox.Text);
+            max = int.Parse(modifyPartMinTextBox.Text);
+            min = int.Parse(modifyPartMaxTextBox.Text);
+            machineID = int.Parse(modifyPartOutsourcedRadio.Checked ? "0" : modifyPartMachineCompanyTextBox.Text);
+
+
+            if (modifyPartOutsourcedRadio.Checked)
+            {
+                Outsourced outsourcedPart = new Outsourced(partId, name, price, inStock, max, min, companyName);
+                //added this for testing purpose, this should go to Inventory then
+                Inventory.updatePart(partId, outsourcedPart);
+                modifyPartInHouseRadio.Checked = true;
+            }
+
+            if (modifyPartInHouseRadio.Checked)
+            {
+                InHouse inhousePart = new InHouse(partId, name, price, inStock, max, min, machineID);
+                //added this for testing purpose, this function should go to Inventory then
+                Inventory.updatePart(partId, inhousePart);
+            }
+            this.Close();
+            mainForm.Show();
+            mainForm.partsGridView.Update();
+            mainForm.partsGridView.Refresh();
+
+
+        }
+
+        
     }
 }

@@ -17,6 +17,16 @@ namespace InventoryManagementSystem
         public int Min { get; set; }
         public int Max { get; set; }
 
+        public Product(int productId, string name, decimal price, int inStock, int min, int max)
+        {
+            ProductID = Convert.ToInt32(productId);
+            Name = name;
+            Price = Convert.ToDecimal(price);
+            InStock = Convert.ToInt32(inStock);
+            Min = Convert.ToInt32(min);
+            Max = Convert.ToInt32(max);
+        }
+
 
         public BindingList<Part> getAssociatedParts()
         {

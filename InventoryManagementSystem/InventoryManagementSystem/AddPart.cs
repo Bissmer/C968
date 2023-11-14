@@ -7,15 +7,33 @@ namespace InventoryManagementSystem
 {
     public partial class addPart : Form
     {
-        public addPart()
+        public MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
+        public addPart(int partID)
         {
             InitializeComponent();
+            addPartIdtTextBox.Text = partID.ToString();
+            addPartIdtTextBox.ReadOnly = true;
+            
         }
 
+        private void changeLabelOnRadioClick(object sender, EventArgs e)
+        {
+            if (addPartOutsourcedRadio.Checked)
+            {
+                addPartMachineCompanyLabel.Text = "Company Name";
+                addPartMachineCompanyTextBox.Clear();
+            }
+            else
+            {
+                addPartMachineCompanyLabel.Text = "        Machine ID";
+                addPartMachineCompanyTextBox.Clear();
+            }
+        }
         //saving information on Save button click in Add part form
         private void saveAddPartBtn_Click(object sender, EventArgs e)
         {
-            int partId = int.Parse(addPartIdtTextBox.Text);
+            int nextPartId = Inventory.GetNextPartId();
+            int partId = nextPartId;
             string name = addPartNameTextBox.Text;
             string companyName = addPartOutsourcedRadio.Checked ? addPartMachineCompanyTextBox.Text : String.Empty;
             int machineID;
@@ -38,9 +56,8 @@ namespace InventoryManagementSystem
             {
                 Outsourced outsourcedPart = new Outsourced(partId, name, price, inStock, max, min, companyName);
                 //added this for testing purpose, this should go to Inventory then
-                Part.Parts.Add(outsourcedPart);
+                Inventory.getAllParts().Add(outsourcedPart);
                 this.Close();
-                MainForm mainForm = new MainForm();
                 mainForm.Show();
 
             }
@@ -49,9 +66,8 @@ namespace InventoryManagementSystem
             {
                 InHouse inhousePart = new InHouse(partId, name, price, inStock, max, min, machineID);
                 //added this for testing purpose, this function should go to Inventory then
-                Part.Parts.Add(inhousePart);
+                Inventory.getAllParts().Add(inhousePart);
                 this.Close();
-                MainForm mainForm = new MainForm();
                 mainForm.Show();
             }
 
@@ -60,12 +76,13 @@ namespace InventoryManagementSystem
         //changing the field composition depending on the radio click
         private void outsourcedRadioAddPart_CheckedChanged(object sender, EventArgs e)
         {
-            addPartMachineCompanyLabel.Text = "Company Name";
+            changeLabelOnRadioClick(sender, e);
+
         }
 
         private void inHouseRadioAddPart_CheckedChanged(object sender, EventArgs e)
         {
-            addPartMachineCompanyLabel.Text = "Machine ID";
+            changeLabelOnRadioClick(sender, e);
         }
 
         //fields validation
@@ -97,6 +114,12 @@ namespace InventoryManagementSystem
                 addPartMaxTextBox.Clear();
                 addPartMaxTextBox.Focus();
             }
+            if ((IsNumeric(addPartMaxTextBox.Text) && (IsNumeric(addPartMinTextBox.Text)) && ((int.Parse(addPartMaxTextBox.Text) < int.Parse(addPartMinTextBox.Text)))))
+            {
+                MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                addPartMaxTextBox.Focus();
+            }
+
         }
 
         private void addPartMinTextBox_Validating(object sender, EventArgs e)
@@ -107,7 +130,13 @@ namespace InventoryManagementSystem
                 addPartMinTextBox.Clear();
                 addPartMinTextBox.Focus();
             }
+            if ((IsNumeric(addPartMinTextBox.Text)) && ((int.Parse(addPartMinTextBox.Text) > int.Parse(addPartMaxTextBox.Text))))
+            {
+                MessageBox.Show("The Min value must be less than the Max value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                addPartMinTextBox.Focus();
+            }
         }
+
 
         //adding validation for the Machine ID field in case of InHouse radio button is checked
         private void addPartMachineCompanyTextBox_Validating(object sender, EventArgs e)
@@ -130,5 +159,10 @@ namespace InventoryManagementSystem
             return int.TryParse(input, out _);
         }
 
+        private void cancelAddPartBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            mainForm.Show();
+        }
     }
 }

@@ -9,45 +9,54 @@ namespace InventoryManagementSystem
         public MainForm()
         {
             InitializeComponent();
-
+            Inventory.ExampleItems();
             //initialized datasourse for test purpose
             var partTable = new BindingSource();
-            partTable.DataSource = Part.Parts;
-            partsTableGrid.DataSource = partTable;
+            partTable.DataSource = Inventory.getAllParts();
+            partsGridView.DataSource = partTable;
+
+            var productTable = new BindingSource();
+            productTable.DataSource = Inventory.getProducts();
+            productsGridView.DataSource = productTable;
         }
 
         private void addPartsMainButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var part = new addPart();
+            int nextPartID = Inventory.GetNextPartId();
+            var part = new addPart(nextPartID);
             part.ShowDialog();
+            partsGridView.Refresh();
         }
 
         private void modifyPartsMainButton_Click(object sender, EventArgs e)
         {
-            if (partsTableGrid.CurrentRow.DataBoundItem.GetType() == typeof(InventoryManagementSystem.InHouse))
+            this.Hide();
+            if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InventoryManagementSystem.InHouse))
             {
-                InHouse inhousePart = (InHouse)partsTableGrid.CurrentRow.DataBoundItem;
+                InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
                 new ModifyPart(inhousePart).ShowDialog();
             }
             else
             {
-                Outsourced outsourcedPart = (Outsourced)partsTableGrid.CurrentRow.DataBoundItem;
+                Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
                 new ModifyPart(outsourcedPart).ShowDialog();
             }
         }
         //enable modify button when row is selected
         private void partsTableGrid_SelectionChanged(object sender, EventArgs e)
         {
-            if (partsTableGrid.SelectedRows.Count > 0)
+            if (partsGridView.SelectedRows.Count > 0)
             {
-                modifyPartsMainButton.Enabled = true;
+                mainFormModifyPartsButton.Enabled = true;
             }
             else
             {
-                modifyPartsMainButton.Enabled = false;
+                mainFormModifyPartsButton.Enabled = false;
             }
         }
+
+
     }
 }
 

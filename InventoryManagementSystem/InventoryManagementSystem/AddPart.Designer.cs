@@ -57,6 +57,7 @@
             this.cancelAddPartBtn.TabIndex = 41;
             this.cancelAddPartBtn.Text = "Cancel";
             this.cancelAddPartBtn.UseVisualStyleBackColor = true;
+            this.cancelAddPartBtn.Click += new System.EventHandler(this.cancelAddPartBtn_Click);
             // 
             // saveAddPartBtn
             // 

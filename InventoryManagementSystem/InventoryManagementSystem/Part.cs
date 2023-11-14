@@ -14,7 +14,6 @@ namespace InventoryManagementSystem
 
 
         //binding list is added for test purpose
-        public static BindingList<Part> Parts = new BindingList<Part>();
         public Part(int partId, string name, decimal price, int inStock, int min, int max)
         {
             PartId = Convert.ToInt32(partId);

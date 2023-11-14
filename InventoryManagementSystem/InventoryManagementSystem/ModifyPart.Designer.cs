@@ -37,7 +37,7 @@
             this.modifyPartMaxTextBox = new System.Windows.Forms.TextBox();
             this.modifyPartMaxLabel = new System.Windows.Forms.Label();
             this.modifyPartPriceTextBox = new System.Windows.Forms.TextBox();
-            this.modifyParPriceLabel = new System.Windows.Forms.Label();
+            this.modifyPartPriceLabel = new System.Windows.Forms.Label();
             this.modifyPartInventoryTextBox = new System.Windows.Forms.TextBox();
             this.modifyPartInventoryLabel = new System.Windows.Forms.Label();
             this.modifyPartNameTextBox = new System.Windows.Forms.TextBox();
@@ -57,6 +57,7 @@
             this.cancelModifyPartBtn.TabIndex = 62;
             this.cancelModifyPartBtn.Text = "Cancel";
             this.cancelModifyPartBtn.UseVisualStyleBackColor = true;
+            this.cancelModifyPartBtn.Click += new System.EventHandler(this.cancelModifyPartBtn_Click);
             // 
             // saveModifyPartBtn
             // 
@@ -66,6 +67,7 @@
             this.saveModifyPartBtn.TabIndex = 61;
             this.saveModifyPartBtn.Text = "Save";
             this.saveModifyPartBtn.UseVisualStyleBackColor = true;
+            this.saveModifyPartBtn.Click += new System.EventHandler(this.saveModifyPartBtn_Click);
             // 
             // modifyPartMachineCompanyTextBox
             // 
@@ -125,16 +127,16 @@
             this.modifyPartPriceTextBox.Size = new System.Drawing.Size(183, 20);
             this.modifyPartPriceTextBox.TabIndex = 52;
             // 
-            // modifyParPriceLabel
+            // modifyPartPriceLabel
             // 
-            this.modifyParPriceLabel.AutoSize = true;
-            this.modifyParPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyParPriceLabel.ForeColor = System.Drawing.Color.Black;
-            this.modifyParPriceLabel.Location = new System.Drawing.Point(117, 260);
-            this.modifyParPriceLabel.Name = "modifyParPriceLabel";
-            this.modifyParPriceLabel.Size = new System.Drawing.Size(89, 20);
-            this.modifyParPriceLabel.TabIndex = 51;
-            this.modifyParPriceLabel.Text = "Price / Cost";
+            this.modifyPartPriceLabel.AutoSize = true;
+            this.modifyPartPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPartPriceLabel.ForeColor = System.Drawing.Color.Black;
+            this.modifyPartPriceLabel.Location = new System.Drawing.Point(117, 260);
+            this.modifyPartPriceLabel.Name = "modifyPartPriceLabel";
+            this.modifyPartPriceLabel.Size = new System.Drawing.Size(89, 20);
+            this.modifyPartPriceLabel.TabIndex = 51;
+            this.modifyPartPriceLabel.Text = "Price / Cost";
             // 
             // modifyPartInventoryTextBox
             // 
@@ -237,7 +239,7 @@
             this.Controls.Add(this.modifyPartMaxTextBox);
             this.Controls.Add(this.modifyPartMaxLabel);
             this.Controls.Add(this.modifyPartPriceTextBox);
-            this.Controls.Add(this.modifyParPriceLabel);
+            this.Controls.Add(this.modifyPartPriceLabel);
             this.Controls.Add(this.modifyPartInventoryTextBox);
             this.Controls.Add(this.modifyPartInventoryLabel);
             this.Controls.Add(this.modifyPartNameTextBox);
@@ -265,7 +267,7 @@
         private System.Windows.Forms.TextBox modifyPartMaxTextBox;
         private System.Windows.Forms.Label modifyPartMaxLabel;
         private System.Windows.Forms.TextBox modifyPartPriceTextBox;
-        private System.Windows.Forms.Label modifyParPriceLabel;
+        private System.Windows.Forms.Label modifyPartPriceLabel;
         private System.Windows.Forms.TextBox modifyPartInventoryTextBox;
         private System.Windows.Forms.Label modifyPartInventoryLabel;
         private System.Windows.Forms.TextBox modifyPartNameTextBox;
