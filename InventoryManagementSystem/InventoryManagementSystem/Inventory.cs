@@ -156,11 +156,11 @@ namespace InventoryManagementSystem
 
         public static void ExampleItems()
         {
-            Product exampleProd = new Product(1, "Example Product", 5, 5, 10, 5);
+            Product exampleProd = new Product(1, "Example Product", 5, 5, 5, 10);
             products.Add(exampleProd);
 
-            Part exampleInPart = new InHouse(1, "Example In Part", 10, 5, 20, 10, 1001);
-            Part exampleOutPart = new Outsourced(2, "Example Out Part", 30, 1, 45, 10, "Test Co.");
+            Part exampleInPart = new InHouse(1, "Example Inhouse Part", 11.5m, 5, 10, 20, 1001);
+            Part exampleOutPart = new Outsourced(2, "Example Outsource Part", 22.7m, 1, 10, 45, "ACME Inc");
             allParts.Add(exampleInPart);
             allParts.Add(exampleOutPart);
 

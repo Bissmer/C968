@@ -43,20 +43,35 @@ namespace InventoryManagementSystem
                 new ModifyPart(outsourcedPart).ShowDialog();
             }
         }
-        //enable modify button when row is selected
+
+        //enable modify and delete buttons when row is selected, if no rows are selected disable buttons
         private void partsTableGrid_SelectionChanged(object sender, EventArgs e)
         {
             if (partsGridView.SelectedRows.Count > 0)
             {
                 mainFormModifyPartsButton.Enabled = true;
+                mainFormDeletePartsButton.Enabled = true;
             }
             else
             {
                 mainFormModifyPartsButton.Enabled = false;
+                mainFormDeletePartsButton.Enabled = false;
             }
         }
 
-
+        private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
+        {
+            if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InHouse))
+            {
+                InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
+                Inventory.deletePart(inhousePart);
+            }
+            else
+            {
+                Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
+                Inventory.deletePart(outsourcedPart);
+            }
+        }
     }
 }
 

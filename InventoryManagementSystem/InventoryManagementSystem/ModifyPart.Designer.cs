@@ -92,6 +92,7 @@
             this.modifyPartMinTextBox.Name = "modifyPartMinTextBox";
             this.modifyPartMinTextBox.Size = new System.Drawing.Size(80, 20);
             this.modifyPartMinTextBox.TabIndex = 56;
+            this.modifyPartMinTextBox.Validated += new System.EventHandler(this.modifyPartMinTextBox_Validating);
             // 
             // modifyPartMinLabel
             // 
@@ -109,6 +110,7 @@
             this.modifyPartMaxTextBox.Name = "modifyPartMaxTextBox";
             this.modifyPartMaxTextBox.Size = new System.Drawing.Size(80, 20);
             this.modifyPartMaxTextBox.TabIndex = 54;
+            this.modifyPartMaxTextBox.Validated += new System.EventHandler(this.modifyPartMaxTextBox_Validating);
             // 
             // modifyPartMaxLabel
             // 
@@ -126,6 +128,7 @@
             this.modifyPartPriceTextBox.Name = "modifyPartPriceTextBox";
             this.modifyPartPriceTextBox.Size = new System.Drawing.Size(183, 20);
             this.modifyPartPriceTextBox.TabIndex = 52;
+            this.modifyPartPriceTextBox.Validated += new System.EventHandler(this.modifyPartPriceTextBox_Validating);
             // 
             // modifyPartPriceLabel
             // 
@@ -144,6 +147,7 @@
             this.modifyPartInventoryTextBox.Name = "modifyPartInventoryTextBox";
             this.modifyPartInventoryTextBox.Size = new System.Drawing.Size(183, 20);
             this.modifyPartInventoryTextBox.TabIndex = 50;
+            this.modifyPartInventoryTextBox.Validated += new System.EventHandler(this.modifyPartInventoryTextBox_Validating);
             // 
             // modifyPartInventoryLabel
             // 
@@ -201,6 +205,7 @@
             this.modifyPartOutsourcedRadio.TabStop = true;
             this.modifyPartOutsourcedRadio.Text = "Outsourced";
             this.modifyPartOutsourcedRadio.UseVisualStyleBackColor = true;
+            this.modifyPartOutsourcedRadio.CheckedChanged += new System.EventHandler(this.modifyPartOutsourcedRadio_CheckedChanged);
             // 
             // modifyPartInHouseRadio
             // 
@@ -213,6 +218,7 @@
             this.modifyPartInHouseRadio.TabStop = true;
             this.modifyPartInHouseRadio.Text = "In-House";
             this.modifyPartInHouseRadio.UseVisualStyleBackColor = true;
+            this.modifyPartInHouseRadio.CheckedChanged += new System.EventHandler(this.modifyPartInHouseRadio_CheckedChanged);
             // 
             // modifyPartLabel
             // 

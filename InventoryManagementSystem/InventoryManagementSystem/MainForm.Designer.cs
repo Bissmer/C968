@@ -139,6 +139,7 @@
             this.mainFormDeletePartsButton.TabIndex = 24;
             this.mainFormDeletePartsButton.Text = "Delete";
             this.mainFormDeletePartsButton.UseVisualStyleBackColor = true;
+            this.mainFormDeletePartsButton.Click += new System.EventHandler(this.mainFormDeletePartsButton_Click);
             // 
             // mainFormModifyPartsButton
             // 
