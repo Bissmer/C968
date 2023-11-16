@@ -58,6 +58,7 @@
             mainFormAddProductsButton.TabIndex = 30;
             mainFormAddProductsButton.Text = "Add";
             mainFormAddProductsButton.UseVisualStyleBackColor = true;
+            mainFormAddProductsButton.Click += new System.EventHandler(this.mainFormAddProductsButton_Click);
             // 
             // appExit
             // 

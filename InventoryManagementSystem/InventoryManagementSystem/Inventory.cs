@@ -154,6 +154,19 @@ namespace InventoryManagementSystem
             return maxId + 1;
         }
 
+        public static int GetNextProductId()
+        {
+            int maxId = 0;
+            foreach (Product product in products)
+            {
+                if (product.ProductID > maxId)
+                {
+                    maxId = product.ProductID;
+                }
+            }
+            return maxId + 1;
+        }
+
         public static void ExampleItems()
         {
             Product exampleProd = new Product(1, "Example Product", 5, 5, 5, 10);

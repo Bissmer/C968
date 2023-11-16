@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Windows.Forms;
 
 namespace InventoryManagementSystem
@@ -10,7 +11,7 @@ namespace InventoryManagementSystem
         {
             InitializeComponent();
             Inventory.ExampleItems();
-            //initialized datasourse for test purpose
+            //initialized datasource for parts and products
             var partTable = new BindingSource();
             partTable.DataSource = Inventory.getAllParts();
             partsGridView.DataSource = partTable;
@@ -61,16 +62,33 @@ namespace InventoryManagementSystem
 
         private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
         {
-            if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InHouse))
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
-                Inventory.deletePart(inhousePart);
+                if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InHouse))
+                {
+                    InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
+                    Inventory.deletePart(inhousePart);
+                }
+                else
+                {
+                    Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
+                    Inventory.deletePart(outsourcedPart);
+                }
             }
-            else
+            else if (dialogResult == DialogResult.No)
             {
-                Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
-                Inventory.deletePart(outsourcedPart);
+                return;
             }
+        }
+
+        private void mainFormAddProductsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            int nextInventoryID = Inventory.GetNextProductId();
+            var product = new AddProduct();
+            product.ShowDialog();
+            productsGridView.Refresh();
         }
     }
 }

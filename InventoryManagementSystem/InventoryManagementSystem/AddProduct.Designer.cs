@@ -1,6 +1,6 @@
 ﻿namespace InventoryManagementSystem
 {
-    partial class Add_Product
+    partial class AddProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -257,7 +257,7 @@
             this.productIDLabel.TabIndex = 57;
             this.productIDLabel.Text = "ID";
             // 
-            // Add_Product
+            // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,8 +285,8 @@
             this.Controls.Add(this.candidatePartsSearchTextBox);
             this.Controls.Add(this.candidatePartsSearchButton);
             this.Controls.Add(this.addProductLabel);
-            this.Name = "Add_Product";
-            this.Text = "Add_Product";
+            this.Name = "AddProduct";
+            this.Text = "AddProduct";
             ((System.ComponentModel.ISupportInitialize)(this.candadatePartsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsGridView)).EndInit();
             this.ResumeLayout(false);

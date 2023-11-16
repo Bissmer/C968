@@ -10,22 +10,21 @@ using System.Windows.Forms;
 
 namespace InventoryManagementSystem
 {
-    public partial class Add_Product : Form
+    public partial class AddProduct : Form
     {
         private MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-        public Add_Product()
+        BindingList<Part> associatedParts = new BindingList<Part>();
+        public AddProduct()
         {
             InitializeComponent();
-        }
+            var candidatePartsTable = new BindingSource();
+            candidatePartsTable.DataSource = Inventory.getAllParts();
+            candadatePartsGridView.DataSource = candidatePartsTable;
 
-        private void Add_Product_Load(object sender, EventArgs e)
-        {
-            BindingList<Part> parts = Inventory.getAllParts();
-            foreach (Part p in parts)
-            {
-                
-            }
+            var associatedPartsTable = new BindingSource();
+            associatedPartsTable.DataSource = associatedParts;
+            associatedPartsGridView.DataSource = associatedPartsTable;
         }
-
     }
+
 }

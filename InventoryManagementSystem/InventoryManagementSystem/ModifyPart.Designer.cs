@@ -181,6 +181,7 @@
             // 
             this.modifyPartIdTextBox.Location = new System.Drawing.Point(229, 116);
             this.modifyPartIdTextBox.Name = "modifyPartIdTextBox";
+            this.modifyPartIdTextBox.ReadOnly = true;
             this.modifyPartIdTextBox.Size = new System.Drawing.Size(183, 20);
             this.modifyPartIdTextBox.TabIndex = 46;
             // 
