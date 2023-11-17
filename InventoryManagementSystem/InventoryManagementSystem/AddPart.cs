@@ -45,8 +45,8 @@ namespace InventoryManagementSystem
                 }
 
                 Part newPart = addPartOutsourcedRadio.Checked
-                    ? (Part)new Outsourced(partId, name, price, inStock, min, max, companyName)
-                    : new InHouse(partId, name, price, inStock, min, max, machineID);
+                    ? (Part)new Outsourced(partId, name, price, inStock, max, min, companyName)
+                    : new InHouse(partId, name, price, inStock, max, min, machineID);
 
                 Inventory.getAllParts().Add(newPart);
                 this.Close();
