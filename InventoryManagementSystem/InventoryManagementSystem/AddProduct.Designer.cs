@@ -67,6 +67,7 @@
             // 
             // candadatePartsGridView
             // 
+            this.candadatePartsGridView.AllowUserToAddRows = false;
             this.candadatePartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.candadatePartsGridView.Location = new System.Drawing.Point(578, 118);
             this.candadatePartsGridView.Name = "candadatePartsGridView";
@@ -81,6 +82,7 @@
             this.candidatePartsAddButton.TabIndex = 38;
             this.candidatePartsAddButton.Text = "Add";
             this.candidatePartsAddButton.UseVisualStyleBackColor = true;
+            this.candidatePartsAddButton.Click += new System.EventHandler(this.candidatePartsAddButton_Click);
             // 
             // candidatePartsSearchTextBox
             // 
@@ -120,6 +122,7 @@
             // 
             // associatedPartsGridView
             // 
+            this.associatedPartsGridView.AllowUserToAddRows = false;
             this.associatedPartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.associatedPartsGridView.Location = new System.Drawing.Point(578, 463);
             this.associatedPartsGridView.Name = "associatedPartsGridView";
@@ -134,6 +137,7 @@
             this.associatedPartsDeleteButton.TabIndex = 45;
             this.associatedPartsDeleteButton.Text = "Delete";
             this.associatedPartsDeleteButton.UseVisualStyleBackColor = true;
+            this.associatedPartsDeleteButton.Click += new System.EventHandler(this.associatedPartsDeleteButton_Click);
             // 
             // addProductCancelButton
             // 
@@ -143,6 +147,7 @@
             this.addProductCancelButton.TabIndex = 48;
             this.addProductCancelButton.Text = "Cancel";
             this.addProductCancelButton.UseVisualStyleBackColor = true;
+            this.addProductCancelButton.Click += new System.EventHandler(this.addProductCancelButton_Click);
             // 
             // addProductSaveButton
             // 
@@ -152,6 +157,7 @@
             this.addProductSaveButton.TabIndex = 49;
             this.addProductSaveButton.Text = "Save";
             this.addProductSaveButton.UseVisualStyleBackColor = true;
+            this.addProductSaveButton.Click += new System.EventHandler(this.addProductSaveButton_Click);
             // 
             // productMinTextBox
             // 

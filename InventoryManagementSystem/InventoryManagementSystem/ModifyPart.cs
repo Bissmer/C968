@@ -39,12 +39,6 @@ namespace InventoryManagementSystem
             modifyPartMinTextBox.Text = min.ToString();
         }
 
-        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
-        {
-            this.Hide();
-            mainForm.ShowDialog();
-        }
-
         private void saveModifyPartBtn_Click(object sender, System.EventArgs e)
         {
             try
@@ -160,6 +154,12 @@ namespace InventoryManagementSystem
             mainForm.Show();
             mainForm.partsGridView.Update();
             mainForm.partsGridView.Refresh();
+        }
+
+        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
+        {
+            this.Hide();
+            mainForm.ShowDialog();
         }
 
     }

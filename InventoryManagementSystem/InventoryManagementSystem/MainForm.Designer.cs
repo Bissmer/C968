@@ -90,6 +90,7 @@
             // 
             // productsGridView
             // 
+            this.productsGridView.AllowUserToAddRows = false;
             this.productsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productsGridView.Location = new System.Drawing.Point(785, 153);
             this.productsGridView.Name = "productsGridView";

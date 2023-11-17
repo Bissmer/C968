@@ -85,8 +85,8 @@ namespace InventoryManagementSystem
         private void mainFormAddProductsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            int nextInventoryID = Inventory.GetNextProductId();
-            var product = new AddProduct();
+            int nextProductID = Inventory.GetNextProductId();
+            var product = new AddProduct(nextProductID);
             product.ShowDialog();
             productsGridView.Refresh();
         }
