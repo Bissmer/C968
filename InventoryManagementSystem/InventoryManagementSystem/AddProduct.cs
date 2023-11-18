@@ -14,11 +14,11 @@ namespace InventoryManagementSystem
     public partial class AddProduct : Form
     {
         private MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-        BindingList<Part> associatedParts = new BindingList<Part>();
+        BindingList<Part> addedParts = new BindingList<Part>();
+
         public AddProduct(int productId)
         {
             InitializeComponent();
-            SetupProductForm(productId);
         }
 
         private void SetupProductForm(int productId)
@@ -26,7 +26,7 @@ namespace InventoryManagementSystem
             productIDTextBox.Text = productId.ToString();
             productIDTextBox.ReadOnly = true;
             BindGridView(candadatePartsGridView, Inventory.getAllParts());
-            BindGridView(associatedPartsGridView, associatedParts);
+            BindGridView(associatedPartsGridView, addedParts);
         }
 
         private void BindGridView(DataGridView gridView, object dataSource)
@@ -45,7 +45,7 @@ namespace InventoryManagementSystem
         private void candidatePartsAddButton_Click(object sender, EventArgs e)
         {
             Part part = (Part)candadatePartsGridView.CurrentRow.DataBoundItem;
-            associatedParts.Add(part);
+            addedParts.Add(part);
         }
 
         private void addProductSaveButton_Click(object sender, EventArgs e)
@@ -62,13 +62,15 @@ namespace InventoryManagementSystem
 
                 if (max < min)
                 {
-                    MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (inStock < min || inStock > max)
                 {
-                    MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     return;
                 }
 
@@ -76,10 +78,11 @@ namespace InventoryManagementSystem
 
                 Inventory.getProducts().Add(newProduct);
 
-                foreach (Part part in associatedParts)
+                foreach (Part part in addedParts)
                 {
                     newProduct.addAssociatedPart(part);
                 }
+
                 this.Close();
                 mainForm.Show();
             }
@@ -90,21 +93,18 @@ namespace InventoryManagementSystem
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
-
-
         }
 
         private void associatedPartsDeleteButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part",
+                MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 Part associatedPart = (Part)associatedPartsGridView.CurrentRow.DataBoundItem;
-                associatedParts.Remove(associatedPart);
+                addedParts.Remove(associatedPart);
             }
             else return;
         }
     }
-
 }

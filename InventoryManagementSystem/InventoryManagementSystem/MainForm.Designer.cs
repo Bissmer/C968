@@ -87,6 +87,7 @@
             this.mainFormModifyProductsButton.TabIndex = 31;
             this.mainFormModifyProductsButton.Text = "Modify";
             this.mainFormModifyProductsButton.UseVisualStyleBackColor = true;
+            this.mainFormModifyProductsButton.Click += new System.EventHandler(this.mainFormModifyProductsButton_Click);
             // 
             // productsGridView
             // 
@@ -96,6 +97,7 @@
             this.productsGridView.Name = "productsGridView";
             this.productsGridView.Size = new System.Drawing.Size(621, 250);
             this.productsGridView.TabIndex = 29;
+            this.productsGridView.SelectionChanged += new System.EventHandler(this.productsTableGrid_SelectionChanged);
             // 
             // partsGridView
             // 

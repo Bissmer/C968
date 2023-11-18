@@ -60,6 +60,20 @@ namespace InventoryManagementSystem
             }
         }
 
+        private void productsTableGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (productsGridView.SelectedRows.Count > 0)
+            {
+                mainFormModifyProductsButton.Enabled = true;
+                mainFormDeleteProductsButton.Enabled = true;
+            }
+            else
+            {
+                mainFormModifyProductsButton.Enabled = false;
+                mainFormDeleteProductsButton.Enabled = false;
+            }
+        }
+
         private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
@@ -89,6 +103,14 @@ namespace InventoryManagementSystem
             var product = new AddProduct(nextProductID);
             product.ShowDialog();
             productsGridView.Refresh();
+        }
+
+        private void mainFormModifyProductsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Product product = (Product)productsGridView.CurrentRow.DataBoundItem;
+            new ModifyProduct(product).ShowDialog();
+            
         }
     }
 }

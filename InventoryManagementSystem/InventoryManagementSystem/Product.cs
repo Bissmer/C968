@@ -9,7 +9,7 @@ namespace InventoryManagementSystem
 {
     public class Product
     {
-        private BindingList<Part> associatedParts = new BindingList<Part>();
+        public BindingList<Part> associatedParts = new BindingList<Part>();
         public int ProductID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -27,11 +27,6 @@ namespace InventoryManagementSystem
             Max = Convert.ToInt32(max);
         }
 
-
-        public BindingList<Part> getAssociatedParts()
-        {
-            return associatedParts;
-        }
 
         public void addAssociatedPart(Part part)
         {

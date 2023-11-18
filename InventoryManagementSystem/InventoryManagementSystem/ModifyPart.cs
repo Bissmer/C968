@@ -12,11 +12,17 @@ namespace InventoryManagementSystem
         }
 
         //constructor for the Inhouse radio checked
-        public ModifyPart(InHouse inHousePart) : this()
+        public ModifyPart(InHouse inHousePart)
         {
             InitializeComponent();
-            SetCommonFields(inHousePart.PartId, inHousePart.Name, inHousePart.InStock, inHousePart.Price, inHousePart.Max, inHousePart.Min);
+            modifyPartIdTextBox.Text = inHousePart.PartId.ToString();
+            modifyPartNameTextBox.Text = inHousePart.Name;
+            modifyPartInventoryTextBox.Text = inHousePart.InStock.ToString();
+            modifyPartPriceTextBox.Text = inHousePart.Price.ToString();
+            modifyPartMaxTextBox.Text = inHousePart.Max.ToString();
+            modifyPartMinTextBox.Text = inHousePart.Min.ToString();
             modifyPartMachineCompanyTextBox.Text = inHousePart.MachineID.ToString();
+
             modifyPartInHouseRadio.Checked = true;
         }
 
@@ -24,81 +30,63 @@ namespace InventoryManagementSystem
         public ModifyPart(Outsourced outsourcedPart)
         {
             InitializeComponent();
-            SetCommonFields(outsourcedPart.PartId, outsourcedPart.Name, outsourcedPart.InStock, outsourcedPart.Price, outsourcedPart.Max, outsourcedPart.Min);
+            modifyPartIdTextBox.Text = outsourcedPart.PartId.ToString();
+            modifyPartNameTextBox.Text = outsourcedPart.Name;
+            modifyPartInventoryTextBox.Text = outsourcedPart.InStock.ToString();
+            modifyPartPriceTextBox.Text = outsourcedPart.Price.ToString();
+            modifyPartMaxTextBox.Text = outsourcedPart.Max.ToString();
+            modifyPartMinTextBox.Text = outsourcedPart.Min.ToString();
             modifyPartMachineCompanyTextBox.Text = outsourcedPart.CompanyName;
+
             modifyPartOutsourcedRadio.Checked = true;
         }
 
-        private void SetCommonFields(int partId, string name, int inStock, decimal price, int max, int min)
+        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
         {
-            modifyPartIdTextBox.Text = partId.ToString();
-            modifyPartNameTextBox.Text = name;
-            modifyPartInventoryTextBox.Text = inStock.ToString();
-            modifyPartPriceTextBox.Text = price.ToString();
-            modifyPartMaxTextBox.Text = max.ToString();
-            modifyPartMinTextBox.Text = min.ToString();
+            this.Hide();
+            mainForm.ShowDialog();
         }
 
         private void saveModifyPartBtn_Click(object sender, System.EventArgs e)
         {
-            try
+            int partId = int.Parse(modifyPartIdTextBox.Text);
+            string name = modifyPartNameTextBox.Text;
+            string companyName = modifyPartOutsourcedRadio.Checked ? modifyPartMachineCompanyTextBox.Text : String.Empty;
+            int machineID = int.Parse(modifyPartOutsourcedRadio.Checked ? "0" : modifyPartMachineCompanyTextBox.Text);
+            int inStock = int.Parse(modifyPartIdTextBox.Text);
+            decimal price = decimal.Parse(modifyPartPriceTextBox.Text);
+            int max = int.Parse(modifyPartMinTextBox.Text);
+            int min = int.Parse(modifyPartMaxTextBox.Text);
+
+
+            if (modifyPartInHouseRadio.Checked)
             {
-                int partId = int.Parse(modifyPartIdTextBox.Text);
-                string name = modifyPartNameTextBox.Text;
-                string companyName = modifyPartOutsourcedRadio.Checked ? modifyPartMachineCompanyTextBox.Text : String.Empty;
-                int machineID = int.Parse(modifyPartOutsourcedRadio.Checked ? "0" : modifyPartMachineCompanyTextBox.Text);
-                int inStock = int.Parse(modifyPartInventoryTextBox.Text);
-                decimal price = decimal.Parse(modifyPartPriceTextBox.Text);
-                int max = int.Parse(modifyPartMaxTextBox.Text);
-                int min = int.Parse(modifyPartMinTextBox.Text);
-
-
-                if (modifyPartInHouseRadio.Checked)
-                {
-                    Inventory.updatePart(partId, new InHouse(partId, name, price, inStock, max, min, machineID));
-                }
-                else
-                {
-                    Inventory.updatePart(partId, new Outsourced(partId, name, price, inStock, max, min, companyName));
-                }
-
-                if (max < min)
-                {
-                    MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (inStock < min || inStock > max)
-                {
-                    MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                CloseAndRefresh();
-
-            }catch (FormatException ex)
+                InHouse inhousePart = new InHouse(partId, name, price, inStock, max, min, machineID);
+                Inventory.updatePart(partId, inhousePart);
+            }
+            else if (modifyPartOutsourcedRadio.Checked)
             {
-                MessageBox.Show($"Input format error: {ex.Message}", "Input Field Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                Outsourced outsourcedPart = new Outsourced(partId, name, price, inStock, max, min, companyName);
+                Inventory.updatePart(partId, outsourcedPart);
             }
 
+            this.Close();
+            mainForm.Show();
+            mainForm.partsGridView.Update();
+            mainForm.partsGridView.Refresh();
         }
+
 
         //fields validation
-
-        private void ValidateNumericInput(object sender, string errorMessage)
-        {
-            if (!IsNumeric(((TextBox)sender).Text))
-            {
-                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ((TextBox)sender).Clear();
-                ((TextBox)sender).Focus();
-            }
-        }
         private void modifyPartInventoryTextBox_Validating(object sender, EventArgs e)
         {
-            ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
+            if (!IsNumeric(modifyPartInventoryTextBox.Text))
+            {
+                MessageBox.Show("The Invenrory field must have a numeric value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPartInventoryTextBox.Clear();
+                modifyPartInventoryTextBox.Focus();
+            }
         }
 
         private void modifyPartPriceTextBox_Validating(object sender, EventArgs e)
@@ -115,12 +103,40 @@ namespace InventoryManagementSystem
 
         private void modifyPartMaxTextBox_Validating(object sender, EventArgs e)
         {
-            ValidateNumericInput(sender, "The Max field must have a numeric value.");
+            if (!IsNumeric(modifyPartMaxTextBox.Text))
+            {
+                MessageBox.Show("The Max field must have a numeric value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPartMaxTextBox.Clear();
+                modifyPartMaxTextBox.Focus();
+            }
+
+            if ((IsNumeric(modifyPartMaxTextBox.Text) && (IsNumeric(modifyPartMinTextBox.Text)) &&
+                 ((int.Parse(modifyPartMaxTextBox.Text) < int.Parse(modifyPartMinTextBox.Text)))))
+            {
+                MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPartMaxTextBox.Focus();
+            }
         }
 
         private void modifyPartMinTextBox_Validating(object sender, EventArgs e)
         {
-            ValidateNumericInput(sender, "The Min field must have a numeric value.");
+            if (!IsNumeric(modifyPartMinTextBox.Text))
+            {
+                MessageBox.Show("The Min field must have a numeric value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPartMinTextBox.Clear();
+                modifyPartMinTextBox.Focus();
+            }
+
+            if ((IsNumeric(modifyPartMinTextBox.Text)) &&
+                ((int.Parse(modifyPartMinTextBox.Text) > int.Parse(modifyPartMaxTextBox.Text))))
+            {
+                MessageBox.Show("The Min value must be less than the Max value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPartMinTextBox.Focus();
+            }
         }
 
         //function for validating input for numeric val
@@ -129,37 +145,26 @@ namespace InventoryManagementSystem
             return int.TryParse(input, out _);
         }
 
-
         private void changeLabelOnRadioClick(object sender, EventArgs e)
         {
-            modifyPartPartMachineCompanyLabel.Text = modifyPartOutsourcedRadio.Checked ? "Company Name" : "        Machine ID";
-            
+            if (modifyPartOutsourcedRadio.Checked)
+            {
+                modifyPartPartMachineCompanyLabel.Text = "Company Name";
+            }
+            else
+            {
+                modifyPartPartMachineCompanyLabel.Text = "        Machine ID";
+            }
         }
-
 
         private void modifyPartOutsourcedRadio_CheckedChanged(object sender, EventArgs e)
         {
             changeLabelOnRadioClick(sender, e);
-
         }
 
         private void modifyPartInHouseRadio_CheckedChanged(object sender, EventArgs e)
         {
             changeLabelOnRadioClick(sender, e);
-        }
-
-        private void CloseAndRefresh()
-        {
-            this.Close();
-            mainForm.Show();
-            mainForm.partsGridView.Update();
-            mainForm.partsGridView.Refresh();
-        }
-
-        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
-        {
-            this.Hide();
-            mainForm.ShowDialog();
         }
 
     }
