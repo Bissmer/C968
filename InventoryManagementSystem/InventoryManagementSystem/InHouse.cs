@@ -6,8 +6,8 @@ namespace InventoryManagementSystem
     {
         public int MachineID { get; set; }
 
-        public InHouse(int partId, string name, decimal price, int inStock, int max, int min,
-            int machineId)
+        public InHouse() {}
+        public InHouse(int partId, string name, decimal price, int inStock, int max, int min, int machineId)
         {
             PartId = Convert.ToInt32(partId);
             Name = name;

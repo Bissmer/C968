@@ -19,13 +19,14 @@ namespace InventoryManagementSystem
         public AddProduct(int productId)
         {
             InitializeComponent();
+            SetupProductForm(productId);
         }
 
         private void SetupProductForm(int productId)
         {
             productIDTextBox.Text = productId.ToString();
             productIDTextBox.ReadOnly = true;
-            BindGridView(candadatePartsGridView, Inventory.getAllParts());
+            BindGridView(candidatePartsGridView, Inventory.getAllParts());
             BindGridView(associatedPartsGridView, addedParts);
         }
 
@@ -44,7 +45,7 @@ namespace InventoryManagementSystem
 
         private void candidatePartsAddButton_Click(object sender, EventArgs e)
         {
-            Part part = (Part)candadatePartsGridView.CurrentRow.DataBoundItem;
+            Part part = (Part)candidatePartsGridView.CurrentRow.DataBoundItem;
             addedParts.Add(part);
         }
 
@@ -106,5 +107,56 @@ namespace InventoryManagementSystem
             }
             else return;
         }
+
+        private void associatedPartsGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
+        }
+
+        private void associatedPartsGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
+        }
+
+        private void candidatePartsSearchButton_Click(object sender, EventArgs e)
+        {
+            candidatePartsGridView.ClearSelection();
+
+            //validate input
+            if (string.IsNullOrWhiteSpace(candidatePartsSearchTextBox.Text) ||
+                !int.TryParse(candidatePartsSearchTextBox.Text, out int searchedPart) ||
+                searchedPart < 1)
+            {
+                MessageBox.Show("Please enter a valid Part ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Part matchPart = Inventory.LookupPart(searchedPart);
+
+            if (matchPart == null)
+            {
+                MessageBox.Show("Part ID not found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //select row with matching partId or throw "Part not found" error
+            bool isPartFound = false;
+            foreach (DataGridViewRow row in candidatePartsGridView.Rows)
+            {
+                Part part = (Part)row.DataBoundItem;
+                if (part.PartId == matchPart.PartId)
+                {
+                    row.Selected = true;
+                    isPartFound = true;
+                    break;
+                }
+
+            }
+            if (!isPartFound)
+            {
+                MessageBox.Show("Part not found.", "Part not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
-}
+    }
+

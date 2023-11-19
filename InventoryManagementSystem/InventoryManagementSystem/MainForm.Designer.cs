@@ -68,6 +68,7 @@
             this.appExit.TabIndex = 33;
             this.appExit.Text = "Exit";
             this.appExit.UseVisualStyleBackColor = true;
+            this.appExit.Click += new System.EventHandler(this.appExit_Click);
             // 
             // mainFormDeleteProductsButton
             // 
@@ -77,6 +78,7 @@
             this.mainFormDeleteProductsButton.TabIndex = 32;
             this.mainFormDeleteProductsButton.Text = "Delete";
             this.mainFormDeleteProductsButton.UseVisualStyleBackColor = true;
+            this.mainFormDeleteProductsButton.Click += new System.EventHandler(this.mainFormDeleteProductsButton_Click);
             // 
             // mainFormModifyProductsButton
             // 
@@ -124,6 +126,7 @@
             this.mainFormProductsSearchButton.TabIndex = 26;
             this.mainFormProductsSearchButton.Text = "Search";
             this.mainFormProductsSearchButton.UseVisualStyleBackColor = true;
+            this.mainFormProductsSearchButton.Click += new System.EventHandler(this.mainFormProductsSearchButton_Click);
             // 
             // mainFormProductsLabel
             // 
@@ -181,6 +184,7 @@
             this.mainFormPartsSearchButton.TabIndex = 20;
             this.mainFormPartsSearchButton.Text = "Search";
             this.mainFormPartsSearchButton.UseVisualStyleBackColor = true;
+            this.mainFormPartsSearchButton.Click += new System.EventHandler(this.mainFormPartsSearchButton_Click);
             // 
             // PartsMainFormLabel
             // 

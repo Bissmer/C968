@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.allCandidatePartsLabel = new System.Windows.Forms.Label();
-            this.candadatePartsGridView = new System.Windows.Forms.DataGridView();
+            this.candidatePartsGridView = new System.Windows.Forms.DataGridView();
             this.candidatePartsAddButton = new System.Windows.Forms.Button();
             this.candidatePartsSearchTextBox = new System.Windows.Forms.TextBox();
             this.candidatePartsSearchButton = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.productNameLabel = new System.Windows.Forms.Label();
             this.productIDTextBox = new System.Windows.Forms.TextBox();
             this.productIDLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.candadatePartsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.candidatePartsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,14 +65,14 @@
             this.allCandidatePartsLabel.TabIndex = 42;
             this.allCandidatePartsLabel.Text = "All Candidate Parts";
             // 
-            // candadatePartsGridView
+            // candidatePartsGridView
             // 
-            this.candadatePartsGridView.AllowUserToAddRows = false;
-            this.candadatePartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.candadatePartsGridView.Location = new System.Drawing.Point(578, 118);
-            this.candadatePartsGridView.Name = "candadatePartsGridView";
-            this.candadatePartsGridView.Size = new System.Drawing.Size(621, 250);
-            this.candadatePartsGridView.TabIndex = 41;
+            this.candidatePartsGridView.AllowUserToAddRows = false;
+            this.candidatePartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.candidatePartsGridView.Location = new System.Drawing.Point(578, 118);
+            this.candidatePartsGridView.Name = "candidatePartsGridView";
+            this.candidatePartsGridView.Size = new System.Drawing.Size(621, 250);
+            this.candidatePartsGridView.TabIndex = 41;
             // 
             // candidatePartsAddButton
             // 
@@ -99,6 +99,7 @@
             this.candidatePartsSearchButton.TabIndex = 36;
             this.candidatePartsSearchButton.Text = "Search";
             this.candidatePartsSearchButton.UseVisualStyleBackColor = true;
+            this.candidatePartsSearchButton.Click += new System.EventHandler(this.candidatePartsSearchButton_Click);
             // 
             // addProductLabel
             // 
@@ -128,9 +129,12 @@
             this.associatedPartsGridView.Name = "associatedPartsGridView";
             this.associatedPartsGridView.Size = new System.Drawing.Size(621, 250);
             this.associatedPartsGridView.TabIndex = 46;
+            this.associatedPartsGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.associatedPartsGridView_RowsAdded);
+            this.associatedPartsGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.associatedPartsGridView_RowsRemoved);
             // 
             // associatedPartsDeleteButton
             // 
+            this.associatedPartsDeleteButton.Enabled = false;
             this.associatedPartsDeleteButton.Location = new System.Drawing.Point(1101, 719);
             this.associatedPartsDeleteButton.Name = "associatedPartsDeleteButton";
             this.associatedPartsDeleteButton.Size = new System.Drawing.Size(98, 23);
@@ -286,14 +290,14 @@
             this.Controls.Add(this.associatedPartsGridView);
             this.Controls.Add(this.associatedPartsDeleteButton);
             this.Controls.Add(this.allCandidatePartsLabel);
-            this.Controls.Add(this.candadatePartsGridView);
+            this.Controls.Add(this.candidatePartsGridView);
             this.Controls.Add(this.candidatePartsAddButton);
             this.Controls.Add(this.candidatePartsSearchTextBox);
             this.Controls.Add(this.candidatePartsSearchButton);
             this.Controls.Add(this.addProductLabel);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
-            ((System.ComponentModel.ISupportInitialize)(this.candadatePartsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.candidatePartsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,7 +307,7 @@
         #endregion
 
         private System.Windows.Forms.Label allCandidatePartsLabel;
-        public System.Windows.Forms.DataGridView candadatePartsGridView;
+        public System.Windows.Forms.DataGridView candidatePartsGridView;
         private System.Windows.Forms.Button candidatePartsAddButton;
         private System.Windows.Forms.TextBox candidatePartsSearchTextBox;
         private System.Windows.Forms.Button candidatePartsSearchButton;

@@ -9,7 +9,7 @@ namespace InventoryManagementSystem
 {
     public class Product
     {
-        public BindingList<Part> associatedParts = new BindingList<Part>();
+        public BindingList<Part> AssociatedParts = new BindingList<Part>();
         public int ProductID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -30,37 +30,38 @@ namespace InventoryManagementSystem
 
         public void addAssociatedPart(Part part)
         {
-            associatedParts.Add(part);
+            AssociatedParts.Add(part);
         }
 
         public bool removeAssociatedPart(int partId)
         {
-            bool removed = false;
-            Part partToRemove = lookupAssociatedPart(partId);
-            foreach (Part part in associatedParts)
+            Part partToRemove = null;
+            foreach (Part part in AssociatedParts)
             {
-                if (partToRemove == null)
+                if (part.PartId == partId)
                 {
-                    removed = false;
-                }
-                else
-                {
-                    associatedParts.Remove(partToRemove);
-                    removed = true;
+                    partToRemove = part;
+                    break;
                 }
             }
-            return removed;
+            if (partToRemove != null)
+            {
+                AssociatedParts.Remove(partToRemove);
+                return true;
+            }
+            return false;
         }
 
         public Part lookupAssociatedPart(int partId)
         {
-            foreach (Part part in associatedParts)
+            foreach (Part part in AssociatedParts)
             {
                 if (part.PartId == partId)
                 {
                     return part;
                 }
             }
+            InHouse inHouse = new InHouse();
             return null;
         }
     }

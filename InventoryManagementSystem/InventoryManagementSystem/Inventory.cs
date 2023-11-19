@@ -6,31 +6,31 @@ namespace InventoryManagementSystem
 {
     public class Inventory
     {
-        private static BindingList<Product> products = new BindingList<Product>();
-        private static BindingList<Part> allParts = new BindingList<Part>();
+        private static BindingList<Product> Products = new BindingList<Product>();
+        private static BindingList<Part> AllParts = new BindingList<Part>();
 
         public static BindingList<Product> getProducts()
         {
-            return products;
+            return Products;
         }
 
         public static BindingList<Part> getAllParts()
         {
-            return allParts;
+            return AllParts;
         }
 
         public static void addProduct(Product product)
         {
-            products.Add(product);
+            Products.Add(product);
         }
 
         public static bool removeProduct(int productID)
         {
-            foreach (Product product in products)
+            foreach (Product product in Products)
             {
                 if (product.ProductID == productID)
                 {
-                    products.Remove(product);
+                    Products.Remove(product);
                     return true;
                 }
             }
@@ -40,7 +40,7 @@ namespace InventoryManagementSystem
 
         public static Product lookupProduct(int productID)
         {
-            foreach (Product product in products)
+            foreach (Product product in Products)
             {
                 if (product.ProductID == productID)
                 {
@@ -53,7 +53,7 @@ namespace InventoryManagementSystem
 
         public static void updateProduct(int productID, Product product)
         {
-            foreach (Product prod in products)
+            foreach (Product prod in Products)
             {
                 if (prod.ProductID == productID)
                 {
@@ -62,32 +62,34 @@ namespace InventoryManagementSystem
                     prod.Price = product.Price;
                     prod.Min = product.Min;
                     prod.Max = product.Max;
+                    prod.AssociatedParts = product.AssociatedParts;
+                    return;
                 }
             }
         }
 
-        public static void addPart(Part part)
+        public static void AddPart(Part part)
         {
-            allParts.Add(part);
+            AllParts.Add(part);
         }
 
-        public static bool deletePart(Part part)
+        public static bool DeletePart(int part)
         {
-            foreach (Part p in allParts)
+            Part partToDelete = LookupPart(part);
+            if (partToDelete == null)
             {
-                if (p.PartId == part.PartId)
-                {
-                    allParts.Remove(p);
-                    return true;
-                }
+                return false;
             }
-
-            return false;
+            else
+            {
+                AllParts.Remove(partToDelete);
+                return true;
+            }
         }
 
-        public static Part lookupPart(int partID)
+        public static Part LookupPart(int partID)
         {
-            foreach (Part part in allParts)
+            foreach (Part part in AllParts)
             {
                 if (part.PartId == partID)
                 {
@@ -100,23 +102,14 @@ namespace InventoryManagementSystem
 
         public static void updatePart(int partID, Part part)
         {
-            foreach (Part p in allParts)
-            {
-                if (p.PartId == partID)
-                {
-                    p.Name = part.Name;
-                    p.InStock = part.InStock;
-                    p.Price = part.Price;
-                    p.Min = part.Min;
-                    p.Max = part.Max;
-                }
-            }
+            DeletePart(partID);
+            AddPart(part);
         }
 
         public static int generatePartID()
         {
             int initialID = 0;
-            foreach (Part part in allParts)
+            foreach (Part part in AllParts)
             {
                 if (part.PartId > initialID)
                 {
@@ -130,7 +123,7 @@ namespace InventoryManagementSystem
         public static int generateProductID()
         {
             int initialProductID = 0;
-            foreach (Product product in products)
+            foreach (Product product in Products)
             {
                 if (product.ProductID > initialProductID)
                 {
@@ -144,7 +137,7 @@ namespace InventoryManagementSystem
         public static int GetNextPartId()
         {
             int maxId = 0;
-            foreach (Part part in allParts)
+            foreach (Part part in AllParts)
             {
                 if (part.PartId > maxId)
                 {
@@ -157,7 +150,7 @@ namespace InventoryManagementSystem
         public static int GetNextProductId()
         {
             int maxId = 0;
-            foreach (Product product in products)
+            foreach (Product product in Products)
             {
                 if (product.ProductID > maxId)
                 {
@@ -170,12 +163,12 @@ namespace InventoryManagementSystem
         public static void ExampleItems()
         {
             Product exampleProd = new Product(1, "Example Product", 5, 6, 5, 10);
-            products.Add(exampleProd);
+            Products.Add(exampleProd);
 
             Part exampleInPart = new InHouse(1, "Example Inhouse Part", 11.5m, 15, 20, 10, 1001);
             Part exampleOutPart = new Outsourced(2, "Example Outsource Part", 22.7m, 15, 45, 10, "ACME Inc");
-            allParts.Add(exampleInPart);
-            allParts.Add(exampleOutPart);
+            AllParts.Add(exampleInPart);
+            AllParts.Add(exampleOutPart);
 
         }
     }

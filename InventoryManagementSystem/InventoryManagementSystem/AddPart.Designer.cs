@@ -232,7 +232,7 @@
             this.addPartLabel.TabIndex = 21;
             this.addPartLabel.Text = "Add Part";
             // 
-            // addPart
+            // AddPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

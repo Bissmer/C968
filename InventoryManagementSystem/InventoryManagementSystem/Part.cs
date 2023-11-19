@@ -13,7 +13,6 @@ namespace InventoryManagementSystem
         public int Max { get; set; }
 
 
-        //binding list is added for test purpose
         public Part(int partId, string name, decimal price, int inStock, int min, int max)
         {
             PartId = Convert.ToInt32(partId);

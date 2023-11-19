@@ -167,6 +167,7 @@
             this.modifyPrdAddProductSaveButton.TabIndex = 79;
             this.modifyPrdAddProductSaveButton.Text = "Save";
             this.modifyPrdAddProductSaveButton.UseVisualStyleBackColor = true;
+            this.modifyPrdAddProductSaveButton.Click += new System.EventHandler(this.modifyPrdAddProductSaveButton_Click);
             // 
             // modifyPrdAddProductCancelButton
             // 
@@ -196,6 +197,8 @@
             this.modifyPrdAssociatedPartsGridView.Name = "modifyPrdAssociatedPartsGridView";
             this.modifyPrdAssociatedPartsGridView.Size = new System.Drawing.Size(621, 250);
             this.modifyPrdAssociatedPartsGridView.TabIndex = 76;
+            this.modifyPrdAssociatedPartsGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.modifyPrdAssociatedPartsGridView_RowsAdded);
+            this.modifyPrdAssociatedPartsGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.modifyPrdAssociatedPartsGridView_RowsRemoved);
             // 
             // modifyPrdAssociatedPartsDeleteButton
             // 
@@ -205,6 +208,7 @@
             this.modifyPrdAssociatedPartsDeleteButton.TabIndex = 75;
             this.modifyPrdAssociatedPartsDeleteButton.Text = "Delete";
             this.modifyPrdAssociatedPartsDeleteButton.UseVisualStyleBackColor = true;
+            this.modifyPrdAssociatedPartsDeleteButton.Click += new System.EventHandler(this.modifyPrdAssociatedPartsDeleteButton_Click);
             // 
             // modifyPrdAllCandidatePartsLabel
             // 
@@ -233,6 +237,7 @@
             this.modifyPrdCandidatePartsAddButton.TabIndex = 72;
             this.modifyPrdCandidatePartsAddButton.Text = "Add";
             this.modifyPrdCandidatePartsAddButton.UseVisualStyleBackColor = true;
+            this.modifyPrdCandidatePartsAddButton.Click += new System.EventHandler(this.modifyPrdCandidatePartsAddButton_Click);
             // 
             // modifyPrdCandidatePartsSearchTextBox
             // 
@@ -249,6 +254,7 @@
             this.modifyPrdCandidatePartsSearchButton.TabIndex = 70;
             this.modifyPrdCandidatePartsSearchButton.Text = "Search";
             this.modifyPrdCandidatePartsSearchButton.UseVisualStyleBackColor = true;
+            this.modifyPrdCandidatePartsSearchButton.Click += new System.EventHandler(this.modifyPrdCandidatePartsSearchButton_Click);
             // 
             // modifyPrdProductLabel
             // 

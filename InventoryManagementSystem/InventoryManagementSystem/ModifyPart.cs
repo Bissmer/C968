@@ -6,11 +6,6 @@ namespace InventoryManagementSystem
     public partial class ModifyPart : Form
     {
         public MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-        public ModifyPart()
-        {
-            InitializeComponent();
-        }
-
         //constructor for the Inhouse radio checked
         public ModifyPart(InHouse inHousePart)
         {
@@ -44,7 +39,7 @@ namespace InventoryManagementSystem
         private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
         {
             this.Hide();
-            mainForm.ShowDialog();
+            mainForm.Show();
         }
 
         private void saveModifyPartBtn_Click(object sender, System.EventArgs e)
@@ -63,11 +58,13 @@ namespace InventoryManagementSystem
             {
                 InHouse inhousePart = new InHouse(partId, name, price, inStock, max, min, machineID);
                 Inventory.updatePart(partId, inhousePart);
+                modifyPartInHouseRadio.Checked = true;
             }
             else if (modifyPartOutsourcedRadio.Checked)
             {
                 Outsourced outsourcedPart = new Outsourced(partId, name, price, inStock, max, min, companyName);
                 Inventory.updatePart(partId, outsourcedPart);
+                modifyPartOutsourcedRadio.Checked = true;
             }
 
             this.Close();
