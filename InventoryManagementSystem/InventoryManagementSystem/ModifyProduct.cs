@@ -29,21 +29,15 @@ namespace InventoryManagementSystem
             modifyPrdProductMaxTextBox.Text = product.Max.ToString();
             modifyPrdProductMinTextBox.Text = product.Min.ToString();
 
-            var modifyCandidParts = new BindingSource();
-            modifyCandidParts.DataSource = Inventory.getAllParts();
-            modifyPrdCandidatePartsGridView.DataSource = modifyCandidParts;
+            modifyPrdCandidatePartsGridView.DataSource = new BindingSource { DataSource = Inventory.getAllParts() };
 
             foreach (Part part in product.AssociatedParts)
             {
                 addedParts.Add(part);
             }
-
-            var modifyAssociatedParts = new BindingSource();
-            modifyAssociatedParts.DataSource = addedParts;
-            modifyPrdAssociatedPartsGridView.DataSource = modifyAssociatedParts;
+            modifyPrdAssociatedPartsGridView.DataSource = addedParts;
 
         }
-
 
         private void modifyPrdAddProductCancelButton_Click(object sender, EventArgs e)
         {
@@ -150,10 +144,15 @@ namespace InventoryManagementSystem
         //enable delete button when row is added
         private void modifyPrdAssociatedPartsGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            modifyPrdAssociatedPartsDeleteButton.Enabled = modifyPrdAssociatedPartsGridView.Rows.Count > 0;
+            UpdateDeleteButtonState();
         }
 
         private void modifyPrdAssociatedPartsGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            UpdateDeleteButtonState();
+        }
+
+        private void UpdateDeleteButtonState()
         {
             modifyPrdAssociatedPartsDeleteButton.Enabled = modifyPrdAssociatedPartsGridView.Rows.Count > 0;
         }

@@ -33,9 +33,7 @@ namespace InventoryManagementSystem
 
         private void BindGridView(DataGridView gridView, object dataSource)
         {
-            var bindingSource = new BindingSource();
-            bindingSource.DataSource = dataSource;
-            gridView.DataSource = bindingSource;
+            gridView.DataSource = dataSource;
         }
 
         //button event handlers

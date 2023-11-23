@@ -12,13 +12,8 @@ namespace InventoryManagementSystem
             InitializeComponent();
             Inventory.ExampleItems();
             //initialized datasource for parts and products
-            var partTable = new BindingSource();
-            partTable.DataSource = Inventory.getAllParts();
-            partsGridView.DataSource = partTable;
-
-            var productTable = new BindingSource();
-            productTable.DataSource = Inventory.getProducts();
-            productsGridView.DataSource = productTable;
+            partsGridView.DataSource = Inventory.getAllParts();
+            productsGridView.DataSource = Inventory.getProducts();
         }
 
         private void addPartsMainButton_Click(object sender, EventArgs e)
@@ -46,32 +41,21 @@ namespace InventoryManagementSystem
         }
 
         //enable modify and delete buttons when row is selected, if no rows are selected disable buttons
+        private void UpdateButtonStateBasedOnSelection(DataGridView gridView, Button modifyButton, Button deleteButton)
+        {
+            bool hasSelection = gridView.SelectedRows.Count > 0;
+            modifyButton.Enabled = hasSelection;
+            deleteButton.Enabled = hasSelection;
+        }
+
         private void partsTableGrid_SelectionChanged(object sender, EventArgs e)
         {
-            if (partsGridView.SelectedRows.Count > 0)
-            {
-                mainFormModifyPartsButton.Enabled = true;
-                mainFormDeletePartsButton.Enabled = true;
-            }
-            else
-            {
-                mainFormModifyPartsButton.Enabled = false;
-                mainFormDeletePartsButton.Enabled = false;
-            }
+            UpdateButtonStateBasedOnSelection(partsGridView, mainFormModifyPartsButton, mainFormDeletePartsButton);
         }
 
         private void productsTableGrid_SelectionChanged(object sender, EventArgs e)
         {
-            if (productsGridView.SelectedRows.Count > 0)
-            {
-                mainFormModifyProductsButton.Enabled = true;
-                mainFormDeleteProductsButton.Enabled = true;
-            }
-            else
-            {
-                mainFormModifyProductsButton.Enabled = false;
-                mainFormDeleteProductsButton.Enabled = false;
-            }
+            UpdateButtonStateBasedOnSelection(productsGridView, mainFormModifyProductsButton, mainFormDeleteProductsButton);
         }
 
         private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
@@ -116,9 +100,7 @@ namespace InventoryManagementSystem
             partsGridView.ClearSelection();
 
             //validate input
-            if (string.IsNullOrWhiteSpace(mainFormPartsSearchTextBox.Text) ||
-                !int.TryParse(mainFormPartsSearchTextBox.Text, out int searchedPart) ||
-                searchedPart < 1)
+            if (!int.TryParse(mainFormPartsSearchTextBox.Text, out int searchedPart) || searchedPart < 1)
             {
                 MessageBox.Show("Please enter a valid Part ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -156,9 +138,7 @@ namespace InventoryManagementSystem
             productsGridView.ClearSelection();
 
             //validate input
-            if (string.IsNullOrWhiteSpace(mainFormProductsSearchTextBox.Text) ||
-                !int.TryParse(mainFormProductsSearchTextBox.Text, out int searchedProduct) ||
-                searchedProduct < 1)
+            if (!int.TryParse(mainFormProductsSearchTextBox.Text, out int searchedProduct) || searchedProduct < 1)
             {
                 MessageBox.Show("Please enter a valid Product ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
