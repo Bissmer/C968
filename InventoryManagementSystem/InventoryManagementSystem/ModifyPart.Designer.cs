@@ -75,6 +75,7 @@
             this.modifyPartMachineCompanyTextBox.Name = "modifyPartMachineCompanyTextBox";
             this.modifyPartMachineCompanyTextBox.Size = new System.Drawing.Size(183, 20);
             this.modifyPartMachineCompanyTextBox.TabIndex = 60;
+            this.modifyPartMachineCompanyTextBox.Validated += new System.EventHandler(this.modifyPartMachineCompanyTextBox_Validating);
             // 
             // modifyPartPartMachineCompanyLabel
             // 

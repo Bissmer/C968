@@ -22,6 +22,7 @@ namespace InventoryManagementSystem
             SetupProductForm(productId);
         }
 
+        //form setup and gridview binding
         private void SetupProductForm(int productId)
         {
             productIDTextBox.Text = productId.ToString();
@@ -37,18 +38,7 @@ namespace InventoryManagementSystem
             gridView.DataSource = bindingSource;
         }
 
-        private void addProductCancelButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            mainForm.Show();
-        }
-
-        private void candidatePartsAddButton_Click(object sender, EventArgs e)
-        {
-            Part part = (Part)candidatePartsGridView.CurrentRow.DataBoundItem;
-            addedParts.Add(part);
-        }
-
+        //button event handlers
         private void addProductSaveButton_Click(object sender, EventArgs e)
         {
             try
@@ -96,28 +86,39 @@ namespace InventoryManagementSystem
             }
         }
 
+        private void addProductCancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            mainForm.Show();
+        }
+
+        private void candidatePartsAddButton_Click(object sender, EventArgs e)
+        {
+            Part part = (Part)candidatePartsGridView.CurrentRow.DataBoundItem;
+            addedParts.Add(part);
+        }
+
         private void associatedPartsDeleteButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part",
-                MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (associatedPartsGridView.SelectedRows.Count == 0)
             {
-                Part associatedPart = (Part)associatedPartsGridView.CurrentRow.DataBoundItem;
-                addedParts.Remove(associatedPart);
+                MessageBox.Show("You need to press on a row first", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else return;
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part",
+                    MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Part associatedPart = (Part)associatedPartsGridView.CurrentRow.DataBoundItem;
+                    addedParts.Remove(associatedPart);
+                }
+                else return;
+            }
+           
         }
 
-        private void associatedPartsGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
-        }
-
-        private void associatedPartsGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
-        }
-
+        //perform a search by partId on parts all candidates gridview
         private void candidatePartsSearchButton_Click(object sender, EventArgs e)
         {
             candidatePartsGridView.ClearSelection();
@@ -157,6 +158,19 @@ namespace InventoryManagementSystem
                 MessageBox.Show("Part not found.", "Part not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //enable delete button when row is added
+        private void associatedPartsGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
+        }
+
+        private void associatedPartsGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
+        }
+
+       
     }
     }
 

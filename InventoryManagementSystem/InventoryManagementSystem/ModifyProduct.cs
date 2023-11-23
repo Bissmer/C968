@@ -17,10 +17,10 @@ namespace InventoryManagementSystem
     {
         private MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
         BindingList<Part> addedParts = new BindingList<Part>();
+
         public ModifyProduct(Product product)
         {
             InitializeComponent();
-
             modifyPrdProductIDTextBox.Text = product.ProductID.ToString();
             modifyPrdProductIDTextBox.ReadOnly = true;
             modifyPrdProductNameTextBox.Text = product.Name;
@@ -82,21 +82,29 @@ namespace InventoryManagementSystem
 
         private void modifyPrdAssociatedPartsDeleteButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (modifyPrdAssociatedPartsGridView.SelectedRows.Count == 0)
             {
-                Part part = (Part)modifyPrdAssociatedPartsGridView.CurrentRow.DataBoundItem;
-                int id = int.Parse(modifyPrdProductIDTextBox.Text);
-
-                Product product = Inventory.lookupProduct(id);
-                product.removeAssociatedPart(part.PartId);
-
-                foreach (DataGridViewRow row in modifyPrdAssociatedPartsGridView.SelectedRows)
-                {
-                    modifyPrdAssociatedPartsGridView.Rows.RemoveAt(row.Index);
-                }
+                MessageBox.Show("You need to press on a row first", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else return;
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Part part = (Part)modifyPrdAssociatedPartsGridView.CurrentRow.DataBoundItem;
+                    int id = int.Parse(modifyPrdProductIDTextBox.Text);
+
+                    Product product = Inventory.lookupProduct(id);
+                    product.removeAssociatedPart(part.PartId);
+
+                    foreach (DataGridViewRow row in modifyPrdAssociatedPartsGridView.SelectedRows)
+                    {
+                        modifyPrdAssociatedPartsGridView.Rows.RemoveAt(row.Index);
+                    }
+                }
+                else return;
+            }
+            
         }
         //perform a search by partId on parts all candidates gridview
         private void modifyPrdCandidatePartsSearchButton_Click(object sender, EventArgs e)
@@ -139,6 +147,7 @@ namespace InventoryManagementSystem
             }
         }
 
+        //enable delete button when row is added
         private void modifyPrdAssociatedPartsGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             modifyPrdAssociatedPartsDeleteButton.Enabled = modifyPrdAssociatedPartsGridView.Rows.Count > 0;

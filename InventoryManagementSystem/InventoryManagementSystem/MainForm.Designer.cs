@@ -96,7 +96,10 @@
             this.productsGridView.AllowUserToAddRows = false;
             this.productsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productsGridView.Location = new System.Drawing.Point(785, 153);
+            this.productsGridView.MultiSelect = false;
             this.productsGridView.Name = "productsGridView";
+            this.productsGridView.ReadOnly = true;
+            this.productsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.productsGridView.Size = new System.Drawing.Size(621, 250);
             this.productsGridView.TabIndex = 29;
             this.productsGridView.SelectionChanged += new System.EventHandler(this.productsTableGrid_SelectionChanged);
@@ -106,7 +109,10 @@
             this.partsGridView.AllowUserToAddRows = false;
             this.partsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.partsGridView.Location = new System.Drawing.Point(64, 153);
+            this.partsGridView.MultiSelect = false;
             this.partsGridView.Name = "partsGridView";
+            this.partsGridView.ReadOnly = true;
+            this.partsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.partsGridView.Size = new System.Drawing.Size(621, 250);
             this.partsGridView.TabIndex = 28;
             this.partsGridView.SelectionChanged += new System.EventHandler(this.partsTableGrid_SelectionChanged);

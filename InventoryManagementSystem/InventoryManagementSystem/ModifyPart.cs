@@ -6,6 +6,7 @@ namespace InventoryManagementSystem
     public partial class ModifyPart : Form
     {
         public MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
+
         //constructor for the Inhouse radio checked
         public ModifyPart(InHouse inHousePart)
         {
@@ -36,22 +37,16 @@ namespace InventoryManagementSystem
             modifyPartOutsourcedRadio.Checked = true;
         }
 
-        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
-        {
-            this.Hide();
-            mainForm.Show();
-        }
-
         private void saveModifyPartBtn_Click(object sender, System.EventArgs e)
         {
             int partId = int.Parse(modifyPartIdTextBox.Text);
             string name = modifyPartNameTextBox.Text;
             string companyName = modifyPartOutsourcedRadio.Checked ? modifyPartMachineCompanyTextBox.Text : String.Empty;
             int machineID = int.Parse(modifyPartOutsourcedRadio.Checked ? "0" : modifyPartMachineCompanyTextBox.Text);
-            int inStock = int.Parse(modifyPartIdTextBox.Text);
+            int inStock = int.Parse(modifyPartInventoryTextBox.Text);
             decimal price = decimal.Parse(modifyPartPriceTextBox.Text);
-            int max = int.Parse(modifyPartMinTextBox.Text);
-            int min = int.Parse(modifyPartMaxTextBox.Text);
+            int max = int.Parse(modifyPartMaxTextBox.Text);
+            int min = int.Parse(modifyPartMinTextBox.Text);
 
 
             if (modifyPartInHouseRadio.Checked)
@@ -67,23 +62,36 @@ namespace InventoryManagementSystem
                 modifyPartOutsourcedRadio.Checked = true;
             }
 
+            if (max < min)
+            {
+                MessageBox.Show("The Max value must be higher than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (inStock < min || inStock > max)
+            {
+                MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             this.Close();
             mainForm.Show();
             mainForm.partsGridView.Update();
             mainForm.partsGridView.Refresh();
         }
 
+        private void cancelModifyPartBtn_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+            mainForm.Show();
+        }
 
+
+        //add valid for ModifyPart
         //fields validation
         private void modifyPartInventoryTextBox_Validating(object sender, EventArgs e)
         {
-            if (!IsNumeric(modifyPartInventoryTextBox.Text))
-            {
-                MessageBox.Show("The Invenrory field must have a numeric value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPartInventoryTextBox.Clear();
-                modifyPartInventoryTextBox.Focus();
-            }
+            ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
         }
 
         private void modifyPartPriceTextBox_Validating(object sender, EventArgs e)
@@ -100,39 +108,19 @@ namespace InventoryManagementSystem
 
         private void modifyPartMaxTextBox_Validating(object sender, EventArgs e)
         {
-            if (!IsNumeric(modifyPartMaxTextBox.Text))
-            {
-                MessageBox.Show("The Max field must have a numeric value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPartMaxTextBox.Clear();
-                modifyPartMaxTextBox.Focus();
-            }
-
-            if ((IsNumeric(modifyPartMaxTextBox.Text) && (IsNumeric(modifyPartMinTextBox.Text)) &&
-                 ((int.Parse(modifyPartMaxTextBox.Text) < int.Parse(modifyPartMinTextBox.Text)))))
-            {
-                MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPartMaxTextBox.Focus();
-            }
+            ValidateNumericInput(sender, "The Max field must have a numeric value.");
         }
 
         private void modifyPartMinTextBox_Validating(object sender, EventArgs e)
         {
-            if (!IsNumeric(modifyPartMinTextBox.Text))
-            {
-                MessageBox.Show("The Min field must have a numeric value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPartMinTextBox.Clear();
-                modifyPartMinTextBox.Focus();
-            }
+            ValidateNumericInput(sender, "The Min field must have a numeric value.");
+        }
 
-            if ((IsNumeric(modifyPartMinTextBox.Text)) &&
-                ((int.Parse(modifyPartMinTextBox.Text) > int.Parse(modifyPartMaxTextBox.Text))))
+        private void modifyPartMachineCompanyTextBox_Validating(object sender, EventArgs e)
+        {
+            if (modifyPartInHouseRadio.Checked)
             {
-                MessageBox.Show("The Min value must be less than the Max value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPartMinTextBox.Focus();
+                ValidateNumericInput(sender, "The Machine ID field must have a numeric value");
             }
         }
 
@@ -140,6 +128,15 @@ namespace InventoryManagementSystem
         private bool IsNumeric(string input)
         {
             return int.TryParse(input, out _);
+        }
+        private void ValidateNumericInput(object sender, string errorMessage)
+        {
+            if (!IsNumeric(((TextBox)sender).Text))
+            {
+                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ((TextBox)sender).Clear();
+                ((TextBox)sender).Focus();
+            }
         }
 
         private void changeLabelOnRadioClick(object sender, EventArgs e)
@@ -163,6 +160,7 @@ namespace InventoryManagementSystem
         {
             changeLabelOnRadioClick(sender, e);
         }
+
 
     }
 }

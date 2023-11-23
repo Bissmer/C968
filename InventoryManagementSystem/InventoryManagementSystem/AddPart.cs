@@ -34,7 +34,7 @@ namespace InventoryManagementSystem
 
                 if (max < min)
                 {
-                    MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The Max value must be higher than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -60,6 +60,13 @@ namespace InventoryManagementSystem
             }
 
         }
+
+        private void cancelAddPartBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            mainForm.Show();
+        }
+
         //common function for numeric input validation
         private void ValidateNumericInput(object sender, string errorMessage)
         {
@@ -70,7 +77,20 @@ namespace InventoryManagementSystem
                 ((TextBox)sender).Focus();
             }
         }
-        //validation of fields
+
+        //validation of fields on the add part form
+
+        private void addPartNameTextBox_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(addPartNameTextBox.Text))
+            {
+                MessageBox.Show("The Name field cannot be empty.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                addPartNameTextBox.Clear();
+                addPartNameTextBox.Focus();
+            }
+        }
+
         private void addPartInventoryTextBox_Validating(object sender, EventArgs e)
         {
            ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
@@ -98,9 +118,6 @@ namespace InventoryManagementSystem
             ValidateNumericInput(sender, "The Min field must have a numeric value.");
         }
 
-        //validation for the Min and Max fields
-      
-
         //adding validation for the Machine ID field in case of InHouse radio button is checked
             private void addPartMachineCompanyTextBox_Validating(object sender, EventArgs e)
         {
@@ -110,11 +127,6 @@ namespace InventoryManagementSystem
             }
         }
 
-        private void changeLabelOnRadioClick(object sender, EventArgs e)
-        {
-           addPartMachineCompanyLabel.Text = addPartOutsourcedRadio.Checked ? "Company Name" : "        Machine ID";
-           addPartMachineCompanyTextBox.Clear();
-        }
 
         //changing the field composition depending on the radio click
         private void outsourcedRadioAddPart_CheckedChanged(object sender, EventArgs e)
@@ -127,6 +139,18 @@ namespace InventoryManagementSystem
             changeLabelOnRadioClick(sender, e);
         }
 
+        private void changeLabelOnRadioClick(object sender, EventArgs e)
+        {
+            if (addPartOutsourcedRadio.Checked)
+            {
+                addPartMachineCompanyLabel.Text = "Company Name";
+            }
+            else
+            {
+                addPartMachineCompanyLabel.Text = "        Machine ID";
+            }
+        }
+
 
         //function for validating input for numeric val
         private bool IsNumeric(string input)
@@ -134,10 +158,6 @@ namespace InventoryManagementSystem
             return int.TryParse(input, out _);
         }
 
-        private void cancelAddPartBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            mainForm.Show();
-        }
+        
     }
 }

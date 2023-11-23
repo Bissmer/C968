@@ -194,7 +194,10 @@
             this.modifyPrdAssociatedPartsGridView.AllowUserToAddRows = false;
             this.modifyPrdAssociatedPartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.modifyPrdAssociatedPartsGridView.Location = new System.Drawing.Point(587, 467);
+            this.modifyPrdAssociatedPartsGridView.MultiSelect = false;
             this.modifyPrdAssociatedPartsGridView.Name = "modifyPrdAssociatedPartsGridView";
+            this.modifyPrdAssociatedPartsGridView.ReadOnly = true;
+            this.modifyPrdAssociatedPartsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.modifyPrdAssociatedPartsGridView.Size = new System.Drawing.Size(621, 250);
             this.modifyPrdAssociatedPartsGridView.TabIndex = 76;
             this.modifyPrdAssociatedPartsGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.modifyPrdAssociatedPartsGridView_RowsAdded);
@@ -202,6 +205,7 @@
             // 
             // modifyPrdAssociatedPartsDeleteButton
             // 
+            this.modifyPrdAssociatedPartsDeleteButton.Enabled = false;
             this.modifyPrdAssociatedPartsDeleteButton.Location = new System.Drawing.Point(1110, 723);
             this.modifyPrdAssociatedPartsDeleteButton.Name = "modifyPrdAssociatedPartsDeleteButton";
             this.modifyPrdAssociatedPartsDeleteButton.Size = new System.Drawing.Size(98, 23);
@@ -225,7 +229,10 @@
             this.modifyPrdCandidatePartsGridView.AllowUserToAddRows = false;
             this.modifyPrdCandidatePartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.modifyPrdCandidatePartsGridView.Location = new System.Drawing.Point(587, 122);
+            this.modifyPrdCandidatePartsGridView.MultiSelect = false;
             this.modifyPrdCandidatePartsGridView.Name = "modifyPrdCandidatePartsGridView";
+            this.modifyPrdCandidatePartsGridView.ReadOnly = true;
+            this.modifyPrdCandidatePartsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.modifyPrdCandidatePartsGridView.Size = new System.Drawing.Size(621, 250);
             this.modifyPrdCandidatePartsGridView.TabIndex = 73;
             // 

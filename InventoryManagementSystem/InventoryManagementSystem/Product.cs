@@ -17,14 +17,15 @@ namespace InventoryManagementSystem
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public Product(int productId, string name, decimal price, int inStock, int min, int max)
+        public Product(int productId, string name, decimal price, int inStock, int max, int min)
         {
             ProductID = Convert.ToInt32(productId);
             Name = name;
             Price = Convert.ToDecimal(price);
             InStock = Convert.ToInt32(inStock);
-            Min = Convert.ToInt32(min);
             Max = Convert.ToInt32(max);
+            Min = Convert.ToInt32(min);
+            
         }
 
 

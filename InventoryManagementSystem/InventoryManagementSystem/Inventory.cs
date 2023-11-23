@@ -162,7 +162,7 @@ namespace InventoryManagementSystem
 
         public static void ExampleItems()
         {
-            Product exampleProd = new Product(1, "Example Product", 5, 6, 5, 10);
+            Product exampleProd = new Product(1, "Example Product", 5, 6, 10, 5);
             Products.Add(exampleProd);
 
             Part exampleInPart = new InHouse(1, "Example Inhouse Part", 11.5m, 15, 20, 10, 1001);

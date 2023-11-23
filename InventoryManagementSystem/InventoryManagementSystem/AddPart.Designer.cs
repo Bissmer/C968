@@ -166,6 +166,7 @@
             this.addPartNameTextBox.Name = "addPartNameTextBox";
             this.addPartNameTextBox.Size = new System.Drawing.Size(183, 20);
             this.addPartNameTextBox.TabIndex = 27;
+            this.addPartNameTextBox.Validated += new System.EventHandler(this.addPartNameTextBox_Validated);
             // 
             // addPartNameLabel
             // 
@@ -232,7 +233,7 @@
             this.addPartLabel.TabIndex = 21;
             this.addPartLabel.Text = "Add Part";
             // 
-            // AddPart
+            // addPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
