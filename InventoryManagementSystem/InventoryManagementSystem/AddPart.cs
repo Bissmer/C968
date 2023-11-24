@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using TextBox = System.Windows.Forms.TextBox;
@@ -10,7 +11,7 @@ namespace InventoryManagementSystem
     public partial class addPart : Form
     {
         public MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
-        ToolTip toolTip = new ToolTip();
+        private ErrorProvider _errorProvider;
 
         public addPart(int partID)
         {
@@ -18,6 +19,7 @@ namespace InventoryManagementSystem
             addPartIdtTextBox.Text = partID.ToString();
             addPartIdtTextBox.ReadOnly = true;
             this.cancelAddPartBtn.CausesValidation = false;
+            this._errorProvider = new ErrorProvider();
         }
 
         //saving information on Save button click in Add part form
@@ -35,17 +37,10 @@ namespace InventoryManagementSystem
                 int max = int.Parse(addPartMaxTextBox.Text);
                 int min = int.Parse(addPartMinTextBox.Text);
 
-                if (max < min)
-                {
-                    MessageBox.Show("The Max value must be higher than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (inStock < min || inStock > max)
-                {
-                    MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                if (!ValidateNameField()) return;
+                if(!ValidateCompanyNameField()) return;
+                if (!ValidateMinMax(min, max)) return;
+                if (!IsInStockWithinRange(inStock, min, max)) return;
 
                 Part newPart = addPartOutsourcedRadio.Checked
                     ? (Part)new Outsourced(partId, name, price, inStock, max, min, companyName)
@@ -57,9 +52,8 @@ namespace InventoryManagementSystem
             }
             catch (FormatException ex)
             {
-                MessageBox.Show("Input format error: A form can't be saved with empty fields.", "Empty Field Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                string errorMessage = "Input Error: A form can't be saved with invalid or empty fields.";
+                MessageBox.Show(errorMessage, "Input Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -73,59 +67,94 @@ namespace InventoryManagementSystem
         //common function for numeric input validation
         private void ValidateNumericInput(object sender, string errorMessage)
         {
-            if (!IsNumeric(((TextBox)sender).Text))
+            TextBox textBox = (TextBox)sender;
+            if (!IsNumeric(textBox.Text))
             {
-                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ((TextBox)sender).Clear();
-                ((TextBox)sender).Focus();
+                SetTextBoxErrorState(textBox, errorMessage);
+            }
+            else
+            {
+                ResetTextBoxState(textBox);
             }
         }
 
         //validation of fields on the add part form
 
-        private void addPartNameTextBox_Validated(object sender, EventArgs e)
+        private bool ValidateNameField()
         {
             if (string.IsNullOrWhiteSpace(addPartNameTextBox.Text))
             {
-                toolTip.Show("The Name field cannot be empty.", addPartNameTextBox, 0,-25,2000);
-                addPartNameTextBox.Clear();
-                addPartNameTextBox.Focus();
+                SetTextBoxErrorState(addPartNameTextBox, "The Name field cannot be empty.");
+                return false;
+            }
+            else
+            {
+                ResetTextBoxState(addPartNameTextBox);
+                return true;
             }
         }
 
-        private void addPartInventoryTextBox_Validating(object sender, EventArgs e)
+        private bool ValidateCompanyNameField()
+        {
+            if (addPartOutsourcedRadio.Checked)
+            {
+                if (string.IsNullOrWhiteSpace(addPartMachineCompanyTextBox.Text))
+                {
+                    SetTextBoxErrorState(addPartMachineCompanyTextBox, "The Company Name field cannot be empty.");
+                    return false;
+                }
+                else
+                {
+                    ResetTextBoxState(addPartMachineCompanyTextBox);
+                    return true;
+                }
+            }
+            return true;
+        }
+
+        private void addPartNameTextBox_Validated(object sender, EventArgs e)
+        {
+            ValidateNameField();
+        }
+
+        private void addPartInventoryTextBox_Validated(object sender, EventArgs e)
         {
            ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
 
         }
 
-        private void addPartPriceTextBox_Validating(object sender, EventArgs e)
+        private void addPartPriceTextBox_Validated(object sender, EventArgs e)
         {
             decimal value;
             if (!Decimal.TryParse(addPartPriceTextBox.Text, out value))
             {
-                MessageBox.Show("The Price field must have a decimal value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                addPartPriceTextBox.Clear();
-                addPartPriceTextBox.Focus();
+                SetTextBoxErrorState(addPartPriceTextBox, "The Price field must have a numeric value.");
+            }
+            else
+            {
+                ResetTextBoxState(addPartPriceTextBox);
             }
         }
-        private void addPartMaxTextBox_Validating(object sender, EventArgs e)
+        private void addPartMaxTextBox_Validated(object sender, EventArgs e)
         {
             ValidateNumericInput(sender, "The Max field must have a numeric value.");
         }
 
-        private void addPartMinTextBox_Validating(object sender, EventArgs e)
+        private void addPartMinTextBox_Validated(object sender, EventArgs e)
         {
             ValidateNumericInput(sender, "The Min field must have a numeric value.");
         }
 
         //adding validation for the Machine ID field in case of InHouse radio button is checked
-            private void addPartMachineCompanyTextBox_Validating(object sender, EventArgs e)
+            private void addPartMachineCompanyTextBox_Validated(object sender, EventArgs e)
         {
             if (addPartInHouseRadio.Checked)
             {
                 ValidateNumericInput(sender, "The Machine ID field must have a numeric value");
+            }
+            else if (addPartOutsourcedRadio.Checked)
+            {
+                ValidateCompanyNameField();
             }
         }
 
@@ -153,13 +182,44 @@ namespace InventoryManagementSystem
             }
         }
 
-
         //function for validating input for numeric val
         private bool IsNumeric(string input)
         {
             return int.TryParse(input, out _);
         }
 
-        
+        //functions for setting/resetting the error state of the text box
+        private void SetTextBoxErrorState(TextBox textBox, string errorMessage)
+        {
+            textBox.BackColor = Color.LightCoral;
+            _errorProvider.SetError(textBox, errorMessage);
+        }
+
+        private void ResetTextBoxState(TextBox textBox)
+        {
+            _errorProvider.SetError(textBox, "");
+            textBox.BackColor = Color.White;
+        }
+
+        //validation for the name mix/max and inventory fields
+        private bool ValidateMinMax(int min, int max)
+        {
+            if (max < min)
+            {
+                MessageBox.Show("The Max value must be higher than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        private bool IsInStockWithinRange(int inStock, int min, int max)
+        {
+            if (inStock < min || inStock > max)
+            {
+                MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
     }
 }

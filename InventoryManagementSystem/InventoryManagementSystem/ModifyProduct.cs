@@ -17,6 +17,7 @@ namespace InventoryManagementSystem
     {
         private MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
         BindingList<Part> addedParts = new BindingList<Part>();
+        private ErrorProvider _errorProvider;
 
         public ModifyProduct(Product product)
         {
@@ -38,6 +39,7 @@ namespace InventoryManagementSystem
             modifyPrdAssociatedPartsGridView.DataSource = addedParts;
 
             this.modifyPrdCancelButton.CausesValidation = false;
+            this._errorProvider = new ErrorProvider();
 
         }
 
@@ -49,39 +51,53 @@ namespace InventoryManagementSystem
 
         private void modifyPrdAddProductSaveButton_Click(object sender, EventArgs e)
         {
-            int productID = int.Parse(modifyPrdIDTextBox.Text);
-            string name = modifyPrdNameTextBox.Text;
-            int inStock = int.Parse(modifyPrdInventoryTextBox.Text);
-            decimal price = decimal.Parse(modifyPrdPriceTextBox.Text);
-            int max = int.Parse(modifyPrdMaxTextBox.Text);
-            int min = int.Parse(modifyPrdMinTextBox.Text);
-
-            if (max < min)
+            try
             {
-                MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                int productID = int.Parse(modifyPrdIDTextBox.Text);
+                string name = modifyPrdNameTextBox.Text;
+                int inStock = int.Parse(modifyPrdInventoryTextBox.Text);
+                decimal price = decimal.Parse(modifyPrdPriceTextBox.Text);
+                int max = int.Parse(modifyPrdMaxTextBox.Text);
+                int min = int.Parse(modifyPrdMinTextBox.Text);
+
+                if (max < min)
+                {
+                    MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (inStock < min || inStock > max)
+                {
+                    MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!ValidateNameField()) return;
+                if (!ValidateMinMax(min, max)) return;
+                if (!IsInStockWithinRange(inStock, min, max)) return;
+
+                Product product = new Product(productID, name, price, inStock, max, min);
+
+                foreach (Part part in addedParts)
+                {
+                    product.addAssociatedPart(part);
+                }
+                Inventory.updateProduct(productID, product);
+
+                this.Close();
+                mainForm.Show();
+                mainForm.partsGridView.Update();
+                mainForm.partsGridView.Refresh();
             }
-
-            if (inStock < min || inStock > max)
+            catch (FormatException ex)
             {
-                MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK,
+                MessageBox.Show("Input Error: A form can't be saved with invalid or empty fields.", "Empty Field Error",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                return;
             }
 
-            Product product = new Product(productID, name, price, inStock, max, min);
-
-            foreach (Part part in addedParts)
-            {
-                product.addAssociatedPart(part);
-            }
-            Inventory.updateProduct(productID, product);
-
-            this.Close();
-            mainForm.Show();
-            mainForm.partsGridView.Update();
-            mainForm.partsGridView.Refresh();
         }
 
         private void modifyPrdCandidatePartsAddButton_Click(object sender, EventArgs e)
@@ -173,25 +189,23 @@ namespace InventoryManagementSystem
 
 
         //Modify product form fields validation
-        private void ValidateNumericInput(object sender, string errorMessage)
+        private bool ValidateNameField()
         {
-            if (!IsNumeric(((TextBox)sender).Text))
+            if (string.IsNullOrWhiteSpace(modifyPrdNameTextBox.Text))
             {
-                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ((TextBox)sender).Clear();
-                ((TextBox)sender).Focus();
+                SetTextBoxErrorState(modifyPrdNameTextBox, "The Name field cannot be empty.");
+                return false;
+            }
+            else
+            {
+                ResetTextBoxState(modifyPrdNameTextBox);
+                return true;
             }
         }
 
         private void modifyPrdProductNameTextBox_Validated(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(modifyPrdNameTextBox.Text))
-            {
-                MessageBox.Show("The Name field cannot be empty.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPrdNameTextBox.Clear();
-                modifyPrdNameTextBox.Focus();
-            }
+            ValidateNameField();
         }
 
         private void modifyPrdProductInventoryTextBox_Validating(object sender, EventArgs e)
@@ -204,10 +218,11 @@ namespace InventoryManagementSystem
             decimal value;
             if (!Decimal.TryParse(modifyPrdPriceTextBox.Text, out value))
             {
-                MessageBox.Show("The Price field must have a decimal value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                modifyPrdPriceTextBox.Clear();
-                modifyPrdPriceTextBox.Focus();
+                SetTextBoxErrorState(modifyPrdPriceTextBox, "The Price field must have a numeric value.");
+            }
+            else
+            {
+                ResetTextBoxState(modifyPrdPriceTextBox);
             }
         }
         private void modifyPrdProductMaxTextBox_Validating(object sender, EventArgs e)
@@ -218,6 +233,53 @@ namespace InventoryManagementSystem
         private void modifyPrdProductMinTextBox_Validating(object sender, EventArgs e)
         {
             ValidateNumericInput(sender, "The Min field must have a numeric value.");
+        }
+
+        //validation for the name mix/max and inventory fields
+        private bool ValidateMinMax(int min, int max)
+        {
+            if (max < min)
+            {
+                MessageBox.Show("The Max value must be higher than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        private bool IsInStockWithinRange(int inStock, int min, int max)
+        {
+            if (inStock < min || inStock > max)
+            {
+                MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        //functions for setting/resetting the error state of the text box
+        private void SetTextBoxErrorState(TextBox textBox, string errorMessage)
+        {
+            textBox.BackColor = Color.LightCoral;
+            _errorProvider.SetError(textBox, errorMessage);
+        }
+
+        private void ResetTextBoxState(TextBox textBox)
+        {
+            _errorProvider.SetError(textBox, "");
+            textBox.BackColor = Color.White;
+        }
+
+        //functions for validating input for numeric val
+        private void ValidateNumericInput(object sender, string errorMessage)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (!IsNumeric(textBox.Text))
+            {
+                SetTextBoxErrorState(textBox, errorMessage);
+            }
+            else
+            {
+                ResetTextBoxState(textBox);
+            }
         }
         private bool IsNumeric(string input)
         {

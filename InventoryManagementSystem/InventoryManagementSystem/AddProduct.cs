@@ -15,6 +15,7 @@ namespace InventoryManagementSystem
     {
         private MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
         BindingList<Part> addedParts = new BindingList<Part>();
+        private ErrorProvider _errorProvider;
 
         public AddProduct(int productId)
         {
@@ -30,6 +31,7 @@ namespace InventoryManagementSystem
             BindGridView(addPrdCandidatePartsGridView, Inventory.getAllParts());
             BindGridView(addPrdAssociatedPartsGridView, addedParts);
             this.addPrdAddProductCancelButton.CausesValidation = false;
+            this._errorProvider = new ErrorProvider();
         }
 
         private void BindGridView(DataGridView gridView, object dataSource)
@@ -50,19 +52,9 @@ namespace InventoryManagementSystem
                 int max = int.Parse(addPrdMaxTextBox.Text);
                 int min = int.Parse(addPrdMinTextBox.Text);
 
-                if (max < min)
-                {
-                    MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (inStock < min || inStock > max)
-                {
-                    MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return;
-                }
+                if (!ValidateNameField()) return;
+                if (!ValidateMinMax(min, max)) return;
+                if (!IsInStockWithinRange(inStock, min, max)) return;
 
                 Product newProduct = new Product(productId, name, price, inStock, max, min);
 
@@ -79,7 +71,7 @@ namespace InventoryManagementSystem
 
             catch (FormatException ex)
             {
-                MessageBox.Show("Input format error: A form can't be saved with empty fields.", "Empty Field Error",
+                MessageBox.Show("Input Error: A form can't be saved with invalid or empty fields.", "Empty Field Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -170,27 +162,23 @@ namespace InventoryManagementSystem
         }
 
         //Add product form fields validation
-        private void ValidateNumericInput(object sender, string errorMessage)
-        {
-            if (!IsNumeric(((TextBox)sender).Text))
-            {
-                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ((TextBox)sender).Clear();
-                ((TextBox)sender).Focus();
-            }
-        }
-
-        private void productNameTextBox_Validated(object sender, EventArgs e)
+        private bool ValidateNameField()
         {
             if (string.IsNullOrWhiteSpace(addPrdNameTextBox.Text))
             {
-                MessageBox.Show("The Name field cannot be empty.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                addPrdNameTextBox.Clear();
-                addPrdNameTextBox.Focus();
+                SetTextBoxErrorState(addPrdNameTextBox, "The Name field cannot be empty.");
+                return false;
+            }
+            else
+            {
+                ResetTextBoxState(addPrdNameTextBox);
+                return true;
             }
         }
-
+        private void productNameTextBox_Validated(object sender, EventArgs e)
+        {
+            ValidateNameField();
+        }
         private void productInventoryTextBox_Validating(object sender, EventArgs e)
         {
             ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
@@ -201,10 +189,11 @@ namespace InventoryManagementSystem
             decimal value;
             if (!Decimal.TryParse(addPrdPriceTextBox.Text, out value))
             {
-                MessageBox.Show("The Price field must have a decimal value.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                addPrdPriceTextBox.Clear();
-                addPrdPriceTextBox.Focus();
+                SetTextBoxErrorState(addPrdPriceTextBox, "The Price field must have a numeric value.");
+            }
+            else
+            {
+                ResetTextBoxState(addPrdPriceTextBox);
             }
         }
         private void productMaxTextBox_Validating(object sender, EventArgs e)
@@ -215,6 +204,52 @@ namespace InventoryManagementSystem
         private void productMinTextBox_Validating(object sender, EventArgs e)
         {
             ValidateNumericInput(sender, "The Min field must have a numeric value.");
+        }
+
+        //validation for the name mix/max and inventory fields
+        private bool ValidateMinMax(int min, int max)
+        {
+            if (max < min)
+            {
+                MessageBox.Show("The Max value must be higher than the Min value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+        private bool IsInStockWithinRange(int inStock, int min, int max)
+        {
+            if (inStock < min || inStock > max)
+            {
+                MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        //functions for setting/resetting the error state of the text box
+        private void SetTextBoxErrorState(TextBox textBox, string errorMessage)
+        {
+            textBox.BackColor = Color.LightCoral;
+            _errorProvider.SetError(textBox, errorMessage);
+        }
+
+        private void ResetTextBoxState(TextBox textBox)
+        {
+            _errorProvider.SetError(textBox, "");
+            textBox.BackColor = Color.White;
+        }
+
+        private void ValidateNumericInput(object sender, string errorMessage)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (!IsNumeric(textBox.Text))
+            {
+                SetTextBoxErrorState(textBox, errorMessage);
+            }
+            else
+            {
+                ResetTextBoxState(textBox);
+            }
         }
         private bool IsNumeric(string input)
         {

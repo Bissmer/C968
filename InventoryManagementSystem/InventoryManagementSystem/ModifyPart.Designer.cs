@@ -166,6 +166,7 @@
             this.modifyPartNameTextBox.Name = "modifyPartNameTextBox";
             this.modifyPartNameTextBox.Size = new System.Drawing.Size(183, 20);
             this.modifyPartNameTextBox.TabIndex = 48;
+            this.modifyPartNameTextBox.Validated += new System.EventHandler(this.modifyPartNameTextBox_Validating);
             // 
             // modifyPartNameLabel
             // 

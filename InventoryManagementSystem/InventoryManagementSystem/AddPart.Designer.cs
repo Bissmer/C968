@@ -75,7 +75,7 @@
             this.addPartMachineCompanyTextBox.Name = "addPartMachineCompanyTextBox";
             this.addPartMachineCompanyTextBox.Size = new System.Drawing.Size(183, 20);
             this.addPartMachineCompanyTextBox.TabIndex = 39;
-            this.addPartMachineCompanyTextBox.Validated += new System.EventHandler(this.addPartMachineCompanyTextBox_Validating);
+            this.addPartMachineCompanyTextBox.Validated += new System.EventHandler(this.addPartMachineCompanyTextBox_Validated);
             // 
             // addPartMachineCompanyLabel
             // 
@@ -93,7 +93,7 @@
             this.addPartMinTextBox.Name = "addPartMinTextBox";
             this.addPartMinTextBox.Size = new System.Drawing.Size(80, 20);
             this.addPartMinTextBox.TabIndex = 35;
-            this.addPartMinTextBox.Validated += new System.EventHandler(this.addPartMinTextBox_Validating);
+            this.addPartMinTextBox.Validated += new System.EventHandler(this.addPartMinTextBox_Validated);
             // 
             // addPartMinLabel
             // 
@@ -111,7 +111,7 @@
             this.addPartMaxTextBox.Name = "addPartMaxTextBox";
             this.addPartMaxTextBox.Size = new System.Drawing.Size(80, 20);
             this.addPartMaxTextBox.TabIndex = 33;
-            this.addPartMaxTextBox.Validated += new System.EventHandler(this.addPartMaxTextBox_Validating);
+            this.addPartMaxTextBox.Validated += new System.EventHandler(this.addPartMaxTextBox_Validated);
             // 
             // addPartMaxLabel
             // 
@@ -129,7 +129,7 @@
             this.addPartPriceTextBox.Name = "addPartPriceTextBox";
             this.addPartPriceTextBox.Size = new System.Drawing.Size(183, 20);
             this.addPartPriceTextBox.TabIndex = 31;
-            this.addPartPriceTextBox.Validated += new System.EventHandler(this.addPartPriceTextBox_Validating);
+            this.addPartPriceTextBox.Validated += new System.EventHandler(this.addPartPriceTextBox_Validated);
             // 
             // addPartPriceLabel
             // 
@@ -148,7 +148,7 @@
             this.addPartInventoryTextBox.Name = "addPartInventoryTextBox";
             this.addPartInventoryTextBox.Size = new System.Drawing.Size(183, 20);
             this.addPartInventoryTextBox.TabIndex = 29;
-            this.addPartInventoryTextBox.Validated += new System.EventHandler(this.addPartInventoryTextBox_Validating);
+            this.addPartInventoryTextBox.Validated += new System.EventHandler(this.addPartInventoryTextBox_Validated);
             // 
             // addPartInventoryLabel
             // 
