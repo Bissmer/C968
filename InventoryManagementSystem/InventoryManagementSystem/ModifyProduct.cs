@@ -21,13 +21,13 @@ namespace InventoryManagementSystem
         public ModifyProduct(Product product)
         {
             InitializeComponent();
-            modifyPrdProductIDTextBox.Text = product.ProductID.ToString();
-            modifyPrdProductIDTextBox.ReadOnly = true;
-            modifyPrdProductNameTextBox.Text = product.Name;
-            modifyPrdProductInventoryTextBox.Text = product.InStock.ToString();
-            modifyPrdProductPriceTextBox.Text = product.Price.ToString();
-            modifyPrdProductMaxTextBox.Text = product.Max.ToString();
-            modifyPrdProductMinTextBox.Text = product.Min.ToString();
+            modifyPrdIDTextBox.Text = product.ProductID.ToString();
+            modifyPrdIDTextBox.ReadOnly = true;
+            modifyPrdNameTextBox.Text = product.Name;
+            modifyPrdInventoryTextBox.Text = product.InStock.ToString();
+            modifyPrdPriceTextBox.Text = product.Price.ToString();
+            modifyPrdMaxTextBox.Text = product.Max.ToString();
+            modifyPrdMinTextBox.Text = product.Min.ToString();
 
             modifyPrdCandidatePartsGridView.DataSource = new BindingSource { DataSource = Inventory.getAllParts() };
 
@@ -36,6 +36,8 @@ namespace InventoryManagementSystem
                 addedParts.Add(part);
             }
             modifyPrdAssociatedPartsGridView.DataSource = addedParts;
+
+            this.modifyPrdCancelButton.CausesValidation = false;
 
         }
 
@@ -47,12 +49,26 @@ namespace InventoryManagementSystem
 
         private void modifyPrdAddProductSaveButton_Click(object sender, EventArgs e)
         {
-            int productID = int.Parse(modifyPrdProductIDTextBox.Text);
-            string name = modifyPrdProductNameTextBox.Text;
-            int inStock = int.Parse(modifyPrdProductInventoryTextBox.Text);
-            decimal price = decimal.Parse(modifyPrdProductPriceTextBox.Text);
-            int max = int.Parse(modifyPrdProductMaxTextBox.Text);
-            int min = int.Parse(modifyPrdProductMinTextBox.Text);
+            int productID = int.Parse(modifyPrdIDTextBox.Text);
+            string name = modifyPrdNameTextBox.Text;
+            int inStock = int.Parse(modifyPrdInventoryTextBox.Text);
+            decimal price = decimal.Parse(modifyPrdPriceTextBox.Text);
+            int max = int.Parse(modifyPrdMaxTextBox.Text);
+            int min = int.Parse(modifyPrdMinTextBox.Text);
+
+            if (max < min)
+            {
+                MessageBox.Show("The Max value must be more than the Min value.", "Invalid Input",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (inStock < min || inStock > max)
+            {
+                MessageBox.Show("Inventory should be in range of min/max", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
 
             Product product = new Product(productID, name, price, inStock, max, min);
 
@@ -86,7 +102,7 @@ namespace InventoryManagementSystem
                 if (dialogResult == DialogResult.Yes)
                 {
                     Part part = (Part)modifyPrdAssociatedPartsGridView.CurrentRow.DataBoundItem;
-                    int id = int.Parse(modifyPrdProductIDTextBox.Text);
+                    int id = int.Parse(modifyPrdIDTextBox.Text);
 
                     Product product = Inventory.lookupProduct(id);
                     product.removeAssociatedPart(part.PartId);
@@ -106,9 +122,7 @@ namespace InventoryManagementSystem
             modifyPrdCandidatePartsGridView.ClearSelection();
 
             //validate input
-            if (string.IsNullOrWhiteSpace(modifyPrdCandidatePartsSearchTextBox.Text) ||
-                !int.TryParse(modifyPrdCandidatePartsSearchTextBox.Text, out int searchedPart) ||
-                searchedPart < 1)
+            if (!int.TryParse(modifyPrdCandidatePartsSearchTextBox.Text, out int searchedPart) || searchedPart < 1)
             {
                 MessageBox.Show("Please enter a valid Part ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -156,7 +170,61 @@ namespace InventoryManagementSystem
         {
             modifyPrdAssociatedPartsDeleteButton.Enabled = modifyPrdAssociatedPartsGridView.Rows.Count > 0;
         }
+
+
+        //Modify product form fields validation
+        private void ValidateNumericInput(object sender, string errorMessage)
+        {
+            if (!IsNumeric(((TextBox)sender).Text))
+            {
+                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ((TextBox)sender).Clear();
+                ((TextBox)sender).Focus();
+            }
+        }
+
+        private void modifyPrdProductNameTextBox_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(modifyPrdNameTextBox.Text))
+            {
+                MessageBox.Show("The Name field cannot be empty.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPrdNameTextBox.Clear();
+                modifyPrdNameTextBox.Focus();
+            }
+        }
+
+        private void modifyPrdProductInventoryTextBox_Validating(object sender, EventArgs e)
+        {
+            ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
+
+        }
+        private void modifyPrdProductPriceTextBox_Validating(object sender, EventArgs e)
+        {
+            decimal value;
+            if (!Decimal.TryParse(modifyPrdPriceTextBox.Text, out value))
+            {
+                MessageBox.Show("The Price field must have a decimal value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                modifyPrdPriceTextBox.Clear();
+                modifyPrdPriceTextBox.Focus();
+            }
+        }
+        private void modifyPrdProductMaxTextBox_Validating(object sender, EventArgs e)
+        {
+            ValidateNumericInput(sender, "The Max field must have a numeric value.");
+        }
+
+        private void modifyPrdProductMinTextBox_Validating(object sender, EventArgs e)
+        {
+            ValidateNumericInput(sender, "The Min field must have a numeric value.");
+        }
+        private bool IsNumeric(string input)
+        {
+            return int.TryParse(input, out _);
+        }
     }
 }
+
     
 

@@ -28,81 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.allCandidatePartsLabel = new System.Windows.Forms.Label();
-            this.candidatePartsGridView = new System.Windows.Forms.DataGridView();
-            this.candidatePartsAddButton = new System.Windows.Forms.Button();
-            this.candidatePartsSearchTextBox = new System.Windows.Forms.TextBox();
-            this.candidatePartsSearchButton = new System.Windows.Forms.Button();
+            this.addPrdAllCandidatePartsLabel = new System.Windows.Forms.Label();
+            this.addPrdCandidatePartsGridView = new System.Windows.Forms.DataGridView();
+            this.addPrdCandidatePartsAddButton = new System.Windows.Forms.Button();
+            this.addPrdCandidatePartsSearchTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdCandidatePartsSearchButton = new System.Windows.Forms.Button();
             this.addProductLabel = new System.Windows.Forms.Label();
-            this.associatedPartsLabel = new System.Windows.Forms.Label();
-            this.associatedPartsGridView = new System.Windows.Forms.DataGridView();
-            this.associatedPartsDeleteButton = new System.Windows.Forms.Button();
-            this.addProductCancelButton = new System.Windows.Forms.Button();
-            this.addProductSaveButton = new System.Windows.Forms.Button();
-            this.productMinTextBox = new System.Windows.Forms.TextBox();
-            this.productMinLabel = new System.Windows.Forms.Label();
-            this.productMaxTextBox = new System.Windows.Forms.TextBox();
-            this.productMaxLabel = new System.Windows.Forms.Label();
-            this.productPriceTextBox = new System.Windows.Forms.TextBox();
-            this.productPriceLabel = new System.Windows.Forms.Label();
-            this.productInventoryTextBox = new System.Windows.Forms.TextBox();
-            this.productInventoryLabel = new System.Windows.Forms.Label();
-            this.productNameTextBox = new System.Windows.Forms.TextBox();
-            this.productNameLabel = new System.Windows.Forms.Label();
-            this.productIDTextBox = new System.Windows.Forms.TextBox();
-            this.productIDLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.candidatePartsGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.associatedPartsGridView)).BeginInit();
+            this.addPrdAssociatedPartsLabel = new System.Windows.Forms.Label();
+            this.addPrdAssociatedPartsGridView = new System.Windows.Forms.DataGridView();
+            this.addPrdAssociatedPartsDeleteButton = new System.Windows.Forms.Button();
+            this.addPrdAddProductCancelButton = new System.Windows.Forms.Button();
+            this.addPrdAddProductSaveButton = new System.Windows.Forms.Button();
+            this.addPrdMinTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdMinLabel = new System.Windows.Forms.Label();
+            this.addPrdMaxTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdMaxLabel = new System.Windows.Forms.Label();
+            this.addPrdPriceTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdPriceLabel = new System.Windows.Forms.Label();
+            this.addPrdInventoryTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdInventoryLabel = new System.Windows.Forms.Label();
+            this.addPrdNameTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdNameLabel = new System.Windows.Forms.Label();
+            this.addPrdIDTextBox = new System.Windows.Forms.TextBox();
+            this.addPrdIDLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.addPrdCandidatePartsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addPrdAssociatedPartsGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // allCandidatePartsLabel
+            // addPrdAllCandidatePartsLabel
             // 
-            this.allCandidatePartsLabel.AutoSize = true;
-            this.allCandidatePartsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.allCandidatePartsLabel.Location = new System.Drawing.Point(573, 82);
-            this.allCandidatePartsLabel.Name = "allCandidatePartsLabel";
-            this.allCandidatePartsLabel.Size = new System.Drawing.Size(199, 26);
-            this.allCandidatePartsLabel.TabIndex = 42;
-            this.allCandidatePartsLabel.Text = "All Candidate Parts";
+            this.addPrdAllCandidatePartsLabel.AutoSize = true;
+            this.addPrdAllCandidatePartsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdAllCandidatePartsLabel.Location = new System.Drawing.Point(573, 82);
+            this.addPrdAllCandidatePartsLabel.Name = "addPrdAllCandidatePartsLabel";
+            this.addPrdAllCandidatePartsLabel.Size = new System.Drawing.Size(199, 26);
+            this.addPrdAllCandidatePartsLabel.TabIndex = 42;
+            this.addPrdAllCandidatePartsLabel.Text = "All Candidate Parts";
             // 
-            // candidatePartsGridView
+            // addPrdCandidatePartsGridView
             // 
-            this.candidatePartsGridView.AllowUserToAddRows = false;
-            this.candidatePartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.candidatePartsGridView.Location = new System.Drawing.Point(578, 118);
-            this.candidatePartsGridView.MultiSelect = false;
-            this.candidatePartsGridView.Name = "candidatePartsGridView";
-            this.candidatePartsGridView.ReadOnly = true;
-            this.candidatePartsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.candidatePartsGridView.Size = new System.Drawing.Size(621, 250);
-            this.candidatePartsGridView.TabIndex = 41;
+            this.addPrdCandidatePartsGridView.AllowUserToAddRows = false;
+            this.addPrdCandidatePartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.addPrdCandidatePartsGridView.Location = new System.Drawing.Point(578, 118);
+            this.addPrdCandidatePartsGridView.MultiSelect = false;
+            this.addPrdCandidatePartsGridView.Name = "addPrdCandidatePartsGridView";
+            this.addPrdCandidatePartsGridView.ReadOnly = true;
+            this.addPrdCandidatePartsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.addPrdCandidatePartsGridView.Size = new System.Drawing.Size(621, 250);
+            this.addPrdCandidatePartsGridView.TabIndex = 41;
             // 
-            // candidatePartsAddButton
+            // addPrdCandidatePartsAddButton
             // 
-            this.candidatePartsAddButton.Location = new System.Drawing.Point(1101, 374);
-            this.candidatePartsAddButton.Name = "candidatePartsAddButton";
-            this.candidatePartsAddButton.Size = new System.Drawing.Size(98, 23);
-            this.candidatePartsAddButton.TabIndex = 38;
-            this.candidatePartsAddButton.Text = "Add";
-            this.candidatePartsAddButton.UseVisualStyleBackColor = true;
-            this.candidatePartsAddButton.Click += new System.EventHandler(this.candidatePartsAddButton_Click);
+            this.addPrdCandidatePartsAddButton.Location = new System.Drawing.Point(1101, 374);
+            this.addPrdCandidatePartsAddButton.Name = "addPrdCandidatePartsAddButton";
+            this.addPrdCandidatePartsAddButton.Size = new System.Drawing.Size(98, 23);
+            this.addPrdCandidatePartsAddButton.TabIndex = 38;
+            this.addPrdCandidatePartsAddButton.Text = "Add";
+            this.addPrdCandidatePartsAddButton.UseVisualStyleBackColor = true;
+            this.addPrdCandidatePartsAddButton.Click += new System.EventHandler(this.candidatePartsAddButton_Click);
             // 
-            // candidatePartsSearchTextBox
+            // addPrdCandidatePartsSearchTextBox
             // 
-            this.candidatePartsSearchTextBox.Location = new System.Drawing.Point(993, 88);
-            this.candidatePartsSearchTextBox.Name = "candidatePartsSearchTextBox";
-            this.candidatePartsSearchTextBox.Size = new System.Drawing.Size(206, 20);
-            this.candidatePartsSearchTextBox.TabIndex = 37;
+            this.addPrdCandidatePartsSearchTextBox.Location = new System.Drawing.Point(993, 88);
+            this.addPrdCandidatePartsSearchTextBox.Name = "addPrdCandidatePartsSearchTextBox";
+            this.addPrdCandidatePartsSearchTextBox.Size = new System.Drawing.Size(206, 20);
+            this.addPrdCandidatePartsSearchTextBox.TabIndex = 37;
             // 
-            // candidatePartsSearchButton
+            // addPrdCandidatePartsSearchButton
             // 
-            this.candidatePartsSearchButton.Location = new System.Drawing.Point(868, 86);
-            this.candidatePartsSearchButton.Name = "candidatePartsSearchButton";
-            this.candidatePartsSearchButton.Size = new System.Drawing.Size(92, 23);
-            this.candidatePartsSearchButton.TabIndex = 36;
-            this.candidatePartsSearchButton.Text = "Search";
-            this.candidatePartsSearchButton.UseVisualStyleBackColor = true;
-            this.candidatePartsSearchButton.Click += new System.EventHandler(this.candidatePartsSearchButton_Click);
+            this.addPrdCandidatePartsSearchButton.Location = new System.Drawing.Point(868, 86);
+            this.addPrdCandidatePartsSearchButton.Name = "addPrdCandidatePartsSearchButton";
+            this.addPrdCandidatePartsSearchButton.Size = new System.Drawing.Size(92, 23);
+            this.addPrdCandidatePartsSearchButton.TabIndex = 36;
+            this.addPrdCandidatePartsSearchButton.Text = "Search";
+            this.addPrdCandidatePartsSearchButton.UseVisualStyleBackColor = true;
+            this.addPrdCandidatePartsSearchButton.Click += new System.EventHandler(this.candidatePartsSearchButton_Click);
             // 
             // addProductLabel
             // 
@@ -114,197 +114,202 @@
             this.addProductLabel.TabIndex = 35;
             this.addProductLabel.Text = "Add Product";
             // 
-            // associatedPartsLabel
+            // addPrdAssociatedPartsLabel
             // 
-            this.associatedPartsLabel.AutoSize = true;
-            this.associatedPartsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.associatedPartsLabel.Location = new System.Drawing.Point(573, 434);
-            this.associatedPartsLabel.Name = "associatedPartsLabel";
-            this.associatedPartsLabel.Size = new System.Drawing.Size(338, 26);
-            this.associatedPartsLabel.TabIndex = 47;
-            this.associatedPartsLabel.Text = "Parts Associated with the Product";
+            this.addPrdAssociatedPartsLabel.AutoSize = true;
+            this.addPrdAssociatedPartsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdAssociatedPartsLabel.Location = new System.Drawing.Point(573, 434);
+            this.addPrdAssociatedPartsLabel.Name = "addPrdAssociatedPartsLabel";
+            this.addPrdAssociatedPartsLabel.Size = new System.Drawing.Size(338, 26);
+            this.addPrdAssociatedPartsLabel.TabIndex = 47;
+            this.addPrdAssociatedPartsLabel.Text = "Parts Associated with the Product";
             // 
-            // associatedPartsGridView
+            // addPrdAssociatedPartsGridView
             // 
-            this.associatedPartsGridView.AllowUserToAddRows = false;
-            this.associatedPartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.associatedPartsGridView.Location = new System.Drawing.Point(578, 463);
-            this.associatedPartsGridView.MultiSelect = false;
-            this.associatedPartsGridView.Name = "associatedPartsGridView";
-            this.associatedPartsGridView.ReadOnly = true;
-            this.associatedPartsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.associatedPartsGridView.Size = new System.Drawing.Size(621, 250);
-            this.associatedPartsGridView.TabIndex = 46;
-            this.associatedPartsGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.associatedPartsGridView_RowsAdded);
-            this.associatedPartsGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.associatedPartsGridView_RowsRemoved);
+            this.addPrdAssociatedPartsGridView.AllowUserToAddRows = false;
+            this.addPrdAssociatedPartsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.addPrdAssociatedPartsGridView.Location = new System.Drawing.Point(578, 463);
+            this.addPrdAssociatedPartsGridView.MultiSelect = false;
+            this.addPrdAssociatedPartsGridView.Name = "addPrdAssociatedPartsGridView";
+            this.addPrdAssociatedPartsGridView.ReadOnly = true;
+            this.addPrdAssociatedPartsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.addPrdAssociatedPartsGridView.Size = new System.Drawing.Size(621, 250);
+            this.addPrdAssociatedPartsGridView.TabIndex = 46;
+            this.addPrdAssociatedPartsGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.associatedPartsGridView_RowsAdded);
+            this.addPrdAssociatedPartsGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.associatedPartsGridView_RowsRemoved);
             // 
-            // associatedPartsDeleteButton
+            // addPrdAssociatedPartsDeleteButton
             // 
-            this.associatedPartsDeleteButton.Enabled = false;
-            this.associatedPartsDeleteButton.Location = new System.Drawing.Point(1101, 719);
-            this.associatedPartsDeleteButton.Name = "associatedPartsDeleteButton";
-            this.associatedPartsDeleteButton.Size = new System.Drawing.Size(98, 23);
-            this.associatedPartsDeleteButton.TabIndex = 45;
-            this.associatedPartsDeleteButton.Text = "Delete";
-            this.associatedPartsDeleteButton.UseVisualStyleBackColor = true;
-            this.associatedPartsDeleteButton.Click += new System.EventHandler(this.associatedPartsDeleteButton_Click);
+            this.addPrdAssociatedPartsDeleteButton.Enabled = false;
+            this.addPrdAssociatedPartsDeleteButton.Location = new System.Drawing.Point(1101, 719);
+            this.addPrdAssociatedPartsDeleteButton.Name = "addPrdAssociatedPartsDeleteButton";
+            this.addPrdAssociatedPartsDeleteButton.Size = new System.Drawing.Size(98, 23);
+            this.addPrdAssociatedPartsDeleteButton.TabIndex = 45;
+            this.addPrdAssociatedPartsDeleteButton.Text = "Delete";
+            this.addPrdAssociatedPartsDeleteButton.UseVisualStyleBackColor = true;
+            this.addPrdAssociatedPartsDeleteButton.Click += new System.EventHandler(this.associatedPartsDeleteButton_Click);
             // 
-            // addProductCancelButton
+            // addPrdAddProductCancelButton
             // 
-            this.addProductCancelButton.Location = new System.Drawing.Point(1095, 780);
-            this.addProductCancelButton.Name = "addProductCancelButton";
-            this.addProductCancelButton.Size = new System.Drawing.Size(104, 41);
-            this.addProductCancelButton.TabIndex = 48;
-            this.addProductCancelButton.Text = "Cancel";
-            this.addProductCancelButton.UseVisualStyleBackColor = true;
-            this.addProductCancelButton.Click += new System.EventHandler(this.addProductCancelButton_Click);
+            this.addPrdAddProductCancelButton.Location = new System.Drawing.Point(1095, 780);
+            this.addPrdAddProductCancelButton.Name = "addPrdAddProductCancelButton";
+            this.addPrdAddProductCancelButton.Size = new System.Drawing.Size(104, 41);
+            this.addPrdAddProductCancelButton.TabIndex = 48;
+            this.addPrdAddProductCancelButton.Text = "Cancel";
+            this.addPrdAddProductCancelButton.UseVisualStyleBackColor = true;
+            this.addPrdAddProductCancelButton.Click += new System.EventHandler(this.addProductCancelButton_Click);
             // 
-            // addProductSaveButton
+            // addPrdAddProductSaveButton
             // 
-            this.addProductSaveButton.Location = new System.Drawing.Point(972, 780);
-            this.addProductSaveButton.Name = "addProductSaveButton";
-            this.addProductSaveButton.Size = new System.Drawing.Size(104, 41);
-            this.addProductSaveButton.TabIndex = 49;
-            this.addProductSaveButton.Text = "Save";
-            this.addProductSaveButton.UseVisualStyleBackColor = true;
-            this.addProductSaveButton.Click += new System.EventHandler(this.addProductSaveButton_Click);
+            this.addPrdAddProductSaveButton.Location = new System.Drawing.Point(972, 780);
+            this.addPrdAddProductSaveButton.Name = "addPrdAddProductSaveButton";
+            this.addPrdAddProductSaveButton.Size = new System.Drawing.Size(104, 41);
+            this.addPrdAddProductSaveButton.TabIndex = 49;
+            this.addPrdAddProductSaveButton.Text = "Save";
+            this.addPrdAddProductSaveButton.UseVisualStyleBackColor = true;
+            this.addPrdAddProductSaveButton.Click += new System.EventHandler(this.addProductSaveButton_Click);
             // 
-            // productMinTextBox
+            // addPrdMinTextBox
             // 
-            this.productMinTextBox.Location = new System.Drawing.Point(308, 491);
-            this.productMinTextBox.Name = "productMinTextBox";
-            this.productMinTextBox.Size = new System.Drawing.Size(80, 20);
-            this.productMinTextBox.TabIndex = 68;
+            this.addPrdMinTextBox.Location = new System.Drawing.Point(308, 491);
+            this.addPrdMinTextBox.Name = "addPrdMinTextBox";
+            this.addPrdMinTextBox.Size = new System.Drawing.Size(80, 20);
+            this.addPrdMinTextBox.TabIndex = 68;
+            this.addPrdMinTextBox.Validated += new System.EventHandler(this.productMinTextBox_Validating);
             // 
-            // productMinLabel
+            // addPrdMinLabel
             // 
-            this.productMinLabel.AutoSize = true;
-            this.productMinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productMinLabel.Location = new System.Drawing.Point(259, 491);
-            this.productMinLabel.Name = "productMinLabel";
-            this.productMinLabel.Size = new System.Drawing.Size(34, 20);
-            this.productMinLabel.TabIndex = 67;
-            this.productMinLabel.Text = "Min";
+            this.addPrdMinLabel.AutoSize = true;
+            this.addPrdMinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdMinLabel.Location = new System.Drawing.Point(259, 491);
+            this.addPrdMinLabel.Name = "addPrdMinLabel";
+            this.addPrdMinLabel.Size = new System.Drawing.Size(34, 20);
+            this.addPrdMinLabel.TabIndex = 67;
+            this.addPrdMinLabel.Text = "Min";
             // 
-            // productMaxTextBox
+            // addPrdMaxTextBox
             // 
-            this.productMaxTextBox.Location = new System.Drawing.Point(138, 489);
-            this.productMaxTextBox.Name = "productMaxTextBox";
-            this.productMaxTextBox.Size = new System.Drawing.Size(80, 20);
-            this.productMaxTextBox.TabIndex = 66;
+            this.addPrdMaxTextBox.Location = new System.Drawing.Point(138, 489);
+            this.addPrdMaxTextBox.Name = "addPrdMaxTextBox";
+            this.addPrdMaxTextBox.Size = new System.Drawing.Size(80, 20);
+            this.addPrdMaxTextBox.TabIndex = 66;
+            this.addPrdMaxTextBox.Validated += new System.EventHandler(this.productMaxTextBox_Validating);
             // 
-            // productMaxLabel
+            // addPrdMaxLabel
             // 
-            this.productMaxLabel.AutoSize = true;
-            this.productMaxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productMaxLabel.Location = new System.Drawing.Point(77, 489);
-            this.productMaxLabel.Name = "productMaxLabel";
-            this.productMaxLabel.Size = new System.Drawing.Size(38, 20);
-            this.productMaxLabel.TabIndex = 65;
-            this.productMaxLabel.Text = "Max";
+            this.addPrdMaxLabel.AutoSize = true;
+            this.addPrdMaxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdMaxLabel.Location = new System.Drawing.Point(77, 489);
+            this.addPrdMaxLabel.Name = "addPrdMaxLabel";
+            this.addPrdMaxLabel.Size = new System.Drawing.Size(38, 20);
+            this.addPrdMaxLabel.TabIndex = 65;
+            this.addPrdMaxLabel.Text = "Max";
             // 
-            // productPriceTextBox
+            // addPrdPriceTextBox
             // 
-            this.productPriceTextBox.Location = new System.Drawing.Point(138, 443);
-            this.productPriceTextBox.Name = "productPriceTextBox";
-            this.productPriceTextBox.Size = new System.Drawing.Size(183, 20);
-            this.productPriceTextBox.TabIndex = 64;
+            this.addPrdPriceTextBox.Location = new System.Drawing.Point(138, 443);
+            this.addPrdPriceTextBox.Name = "addPrdPriceTextBox";
+            this.addPrdPriceTextBox.Size = new System.Drawing.Size(183, 20);
+            this.addPrdPriceTextBox.TabIndex = 64;
+            this.addPrdPriceTextBox.Validated += new System.EventHandler(this.productPriceTextBox_Validating);
             // 
-            // productPriceLabel
+            // addPrdPriceLabel
             // 
-            this.productPriceLabel.AutoSize = true;
-            this.productPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productPriceLabel.ForeColor = System.Drawing.Color.Black;
-            this.productPriceLabel.Location = new System.Drawing.Point(26, 441);
-            this.productPriceLabel.Name = "productPriceLabel";
-            this.productPriceLabel.Size = new System.Drawing.Size(89, 20);
-            this.productPriceLabel.TabIndex = 63;
-            this.productPriceLabel.Text = "Price / Cost";
+            this.addPrdPriceLabel.AutoSize = true;
+            this.addPrdPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdPriceLabel.ForeColor = System.Drawing.Color.Black;
+            this.addPrdPriceLabel.Location = new System.Drawing.Point(26, 441);
+            this.addPrdPriceLabel.Name = "addPrdPriceLabel";
+            this.addPrdPriceLabel.Size = new System.Drawing.Size(89, 20);
+            this.addPrdPriceLabel.TabIndex = 63;
+            this.addPrdPriceLabel.Text = "Price / Cost";
             // 
-            // productInventoryTextBox
+            // addPrdInventoryTextBox
             // 
-            this.productInventoryTextBox.Location = new System.Drawing.Point(138, 394);
-            this.productInventoryTextBox.Name = "productInventoryTextBox";
-            this.productInventoryTextBox.Size = new System.Drawing.Size(183, 20);
-            this.productInventoryTextBox.TabIndex = 62;
+            this.addPrdInventoryTextBox.Location = new System.Drawing.Point(138, 394);
+            this.addPrdInventoryTextBox.Name = "addPrdInventoryTextBox";
+            this.addPrdInventoryTextBox.Size = new System.Drawing.Size(183, 20);
+            this.addPrdInventoryTextBox.TabIndex = 62;
+            this.addPrdInventoryTextBox.Validated += new System.EventHandler(this.productInventoryTextBox_Validating);
             // 
-            // productInventoryLabel
+            // addPrdInventoryLabel
             // 
-            this.productInventoryLabel.AutoSize = true;
-            this.productInventoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productInventoryLabel.Location = new System.Drawing.Point(41, 394);
-            this.productInventoryLabel.Name = "productInventoryLabel";
-            this.productInventoryLabel.Size = new System.Drawing.Size(74, 20);
-            this.productInventoryLabel.TabIndex = 61;
-            this.productInventoryLabel.Text = "Inventory";
+            this.addPrdInventoryLabel.AutoSize = true;
+            this.addPrdInventoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdInventoryLabel.Location = new System.Drawing.Point(41, 394);
+            this.addPrdInventoryLabel.Name = "addPrdInventoryLabel";
+            this.addPrdInventoryLabel.Size = new System.Drawing.Size(74, 20);
+            this.addPrdInventoryLabel.TabIndex = 61;
+            this.addPrdInventoryLabel.Text = "Inventory";
             // 
-            // productNameTextBox
+            // addPrdNameTextBox
             // 
-            this.productNameTextBox.Location = new System.Drawing.Point(138, 346);
-            this.productNameTextBox.Name = "productNameTextBox";
-            this.productNameTextBox.Size = new System.Drawing.Size(183, 20);
-            this.productNameTextBox.TabIndex = 60;
+            this.addPrdNameTextBox.Location = new System.Drawing.Point(138, 346);
+            this.addPrdNameTextBox.Name = "addPrdNameTextBox";
+            this.addPrdNameTextBox.Size = new System.Drawing.Size(183, 20);
+            this.addPrdNameTextBox.TabIndex = 60;
+            this.addPrdNameTextBox.Validated += new System.EventHandler(this.productNameTextBox_Validated);
             // 
-            // productNameLabel
+            // addPrdNameLabel
             // 
-            this.productNameLabel.AutoSize = true;
-            this.productNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.productNameLabel.Location = new System.Drawing.Point(64, 344);
-            this.productNameLabel.Name = "productNameLabel";
-            this.productNameLabel.Size = new System.Drawing.Size(51, 20);
-            this.productNameLabel.TabIndex = 59;
-            this.productNameLabel.Text = "Name";
+            this.addPrdNameLabel.AutoSize = true;
+            this.addPrdNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.addPrdNameLabel.Location = new System.Drawing.Point(64, 344);
+            this.addPrdNameLabel.Name = "addPrdNameLabel";
+            this.addPrdNameLabel.Size = new System.Drawing.Size(51, 20);
+            this.addPrdNameLabel.TabIndex = 59;
+            this.addPrdNameLabel.Text = "Name";
             // 
-            // productIDTextBox
+            // addPrdIDTextBox
             // 
-            this.productIDTextBox.Location = new System.Drawing.Point(138, 297);
-            this.productIDTextBox.Name = "productIDTextBox";
-            this.productIDTextBox.Size = new System.Drawing.Size(183, 20);
-            this.productIDTextBox.TabIndex = 58;
+            this.addPrdIDTextBox.Location = new System.Drawing.Point(138, 297);
+            this.addPrdIDTextBox.Name = "addPrdIDTextBox";
+            this.addPrdIDTextBox.Size = new System.Drawing.Size(183, 20);
+            this.addPrdIDTextBox.TabIndex = 58;
             // 
-            // productIDLabel
+            // addPrdIDLabel
             // 
-            this.productIDLabel.AutoSize = true;
-            this.productIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productIDLabel.Location = new System.Drawing.Point(89, 297);
-            this.productIDLabel.Name = "productIDLabel";
-            this.productIDLabel.Size = new System.Drawing.Size(26, 20);
-            this.productIDLabel.TabIndex = 57;
-            this.productIDLabel.Text = "ID";
+            this.addPrdIDLabel.AutoSize = true;
+            this.addPrdIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPrdIDLabel.Location = new System.Drawing.Point(89, 297);
+            this.addPrdIDLabel.Name = "addPrdIDLabel";
+            this.addPrdIDLabel.Size = new System.Drawing.Size(26, 20);
+            this.addPrdIDLabel.TabIndex = 57;
+            this.addPrdIDLabel.Text = "ID";
             // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 861);
-            this.Controls.Add(this.productMinTextBox);
-            this.Controls.Add(this.productMinLabel);
-            this.Controls.Add(this.productMaxTextBox);
-            this.Controls.Add(this.productMaxLabel);
-            this.Controls.Add(this.productPriceTextBox);
-            this.Controls.Add(this.productPriceLabel);
-            this.Controls.Add(this.productInventoryTextBox);
-            this.Controls.Add(this.productInventoryLabel);
-            this.Controls.Add(this.productNameTextBox);
-            this.Controls.Add(this.productNameLabel);
-            this.Controls.Add(this.productIDTextBox);
-            this.Controls.Add(this.productIDLabel);
-            this.Controls.Add(this.addProductSaveButton);
-            this.Controls.Add(this.addProductCancelButton);
-            this.Controls.Add(this.associatedPartsLabel);
-            this.Controls.Add(this.associatedPartsGridView);
-            this.Controls.Add(this.associatedPartsDeleteButton);
-            this.Controls.Add(this.allCandidatePartsLabel);
-            this.Controls.Add(this.candidatePartsGridView);
-            this.Controls.Add(this.candidatePartsAddButton);
-            this.Controls.Add(this.candidatePartsSearchTextBox);
-            this.Controls.Add(this.candidatePartsSearchButton);
+            this.Controls.Add(this.addPrdMinTextBox);
+            this.Controls.Add(this.addPrdMinLabel);
+            this.Controls.Add(this.addPrdMaxTextBox);
+            this.Controls.Add(this.addPrdMaxLabel);
+            this.Controls.Add(this.addPrdPriceTextBox);
+            this.Controls.Add(this.addPrdPriceLabel);
+            this.Controls.Add(this.addPrdInventoryTextBox);
+            this.Controls.Add(this.addPrdInventoryLabel);
+            this.Controls.Add(this.addPrdNameTextBox);
+            this.Controls.Add(this.addPrdNameLabel);
+            this.Controls.Add(this.addPrdIDTextBox);
+            this.Controls.Add(this.addPrdIDLabel);
+            this.Controls.Add(this.addPrdAddProductSaveButton);
+            this.Controls.Add(this.addPrdAddProductCancelButton);
+            this.Controls.Add(this.addPrdAssociatedPartsLabel);
+            this.Controls.Add(this.addPrdAssociatedPartsGridView);
+            this.Controls.Add(this.addPrdAssociatedPartsDeleteButton);
+            this.Controls.Add(this.addPrdAllCandidatePartsLabel);
+            this.Controls.Add(this.addPrdCandidatePartsGridView);
+            this.Controls.Add(this.addPrdCandidatePartsAddButton);
+            this.Controls.Add(this.addPrdCandidatePartsSearchTextBox);
+            this.Controls.Add(this.addPrdCandidatePartsSearchButton);
             this.Controls.Add(this.addProductLabel);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
-            ((System.ComponentModel.ISupportInitialize)(this.candidatePartsGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.associatedPartsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addPrdCandidatePartsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addPrdAssociatedPartsGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,28 +317,28 @@
 
         #endregion
 
-        private System.Windows.Forms.Label allCandidatePartsLabel;
-        public System.Windows.Forms.DataGridView candidatePartsGridView;
-        private System.Windows.Forms.Button candidatePartsAddButton;
-        private System.Windows.Forms.TextBox candidatePartsSearchTextBox;
-        private System.Windows.Forms.Button candidatePartsSearchButton;
+        private System.Windows.Forms.Label addPrdAllCandidatePartsLabel;
+        public System.Windows.Forms.DataGridView addPrdCandidatePartsGridView;
+        private System.Windows.Forms.Button addPrdCandidatePartsAddButton;
+        private System.Windows.Forms.TextBox addPrdCandidatePartsSearchTextBox;
+        private System.Windows.Forms.Button addPrdCandidatePartsSearchButton;
         private System.Windows.Forms.Label addProductLabel;
-        private System.Windows.Forms.Label associatedPartsLabel;
-        public System.Windows.Forms.DataGridView associatedPartsGridView;
-        private System.Windows.Forms.Button associatedPartsDeleteButton;
-        private System.Windows.Forms.Button addProductCancelButton;
-        private System.Windows.Forms.Button addProductSaveButton;
-        private System.Windows.Forms.TextBox productMinTextBox;
-        private System.Windows.Forms.Label productMinLabel;
-        private System.Windows.Forms.TextBox productMaxTextBox;
-        private System.Windows.Forms.Label productMaxLabel;
-        private System.Windows.Forms.TextBox productPriceTextBox;
-        private System.Windows.Forms.Label productPriceLabel;
-        private System.Windows.Forms.TextBox productInventoryTextBox;
-        private System.Windows.Forms.Label productInventoryLabel;
-        private System.Windows.Forms.TextBox productNameTextBox;
-        private System.Windows.Forms.Label productNameLabel;
-        private System.Windows.Forms.TextBox productIDTextBox;
-        private System.Windows.Forms.Label productIDLabel;
+        private System.Windows.Forms.Label addPrdAssociatedPartsLabel;
+        public System.Windows.Forms.DataGridView addPrdAssociatedPartsGridView;
+        private System.Windows.Forms.Button addPrdAssociatedPartsDeleteButton;
+        private System.Windows.Forms.Button addPrdAddProductCancelButton;
+        private System.Windows.Forms.Button addPrdAddProductSaveButton;
+        private System.Windows.Forms.TextBox addPrdMinTextBox;
+        private System.Windows.Forms.Label addPrdMinLabel;
+        private System.Windows.Forms.TextBox addPrdMaxTextBox;
+        private System.Windows.Forms.Label addPrdMaxLabel;
+        private System.Windows.Forms.TextBox addPrdPriceTextBox;
+        private System.Windows.Forms.Label addPrdPriceLabel;
+        private System.Windows.Forms.TextBox addPrdInventoryTextBox;
+        private System.Windows.Forms.Label addPrdInventoryLabel;
+        private System.Windows.Forms.TextBox addPrdNameTextBox;
+        private System.Windows.Forms.Label addPrdNameLabel;
+        private System.Windows.Forms.TextBox addPrdIDTextBox;
+        private System.Windows.Forms.Label addPrdIDLabel;
     }
 }

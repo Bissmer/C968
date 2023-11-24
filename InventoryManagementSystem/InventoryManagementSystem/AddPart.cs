@@ -3,18 +3,21 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using TextBox = System.Windows.Forms.TextBox;
+using ToolTip = System.Windows.Forms.ToolTip;
 
 namespace InventoryManagementSystem
 {
     public partial class addPart : Form
     {
         public MainForm mainForm = (MainForm)Application.OpenForms["MainForm"];
+        ToolTip toolTip = new ToolTip();
 
         public addPart(int partID)
         {
             InitializeComponent();
             addPartIdtTextBox.Text = partID.ToString();
             addPartIdtTextBox.ReadOnly = true;
+            this.cancelAddPartBtn.CausesValidation = false;
         }
 
         //saving information on Save button click in Add part form
@@ -84,8 +87,7 @@ namespace InventoryManagementSystem
         {
             if (string.IsNullOrWhiteSpace(addPartNameTextBox.Text))
             {
-                MessageBox.Show("The Name field cannot be empty.", "Invalid Input", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                toolTip.Show("The Name field cannot be empty.", addPartNameTextBox, 0,-25,2000);
                 addPartNameTextBox.Clear();
                 addPartNameTextBox.Focus();
             }

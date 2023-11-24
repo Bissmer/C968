@@ -106,34 +106,6 @@ namespace InventoryManagementSystem
             AddPart(part);
         }
 
-        public static int generatePartID()
-        {
-            int initialID = 0;
-            foreach (Part part in AllParts)
-            {
-                if (part.PartId > initialID)
-                {
-                    initialID = part.PartId;
-                }
-            }
-
-            return initialID + 1;
-        }
-
-        public static int generateProductID()
-        {
-            int initialProductID = 0;
-            foreach (Product product in Products)
-            {
-                if (product.ProductID > initialProductID)
-                {
-                    initialProductID = product.ProductID;
-                }
-            }
-
-            return initialProductID + 1;
-        }
-
         public static int GetNextPartId()
         {
             int maxId = 0;
@@ -146,7 +118,6 @@ namespace InventoryManagementSystem
             }
             return maxId + 1;
         }
-
         public static int GetNextProductId()
         {
             int maxId = 0;
@@ -162,13 +133,10 @@ namespace InventoryManagementSystem
 
         public static void ExampleItems()
         {
-            Product exampleProd = new Product(1, "Example Product", 5, 6, 10, 5);
-            Products.Add(exampleProd);
-
-            Part exampleInPart = new InHouse(1, "Example Inhouse Part", 11.5m, 15, 20, 10, 1001);
-            Part exampleOutPart = new Outsourced(2, "Example Outsource Part", 22.7m, 15, 45, 10, "ACME Inc");
-            AllParts.Add(exampleInPart);
-            AllParts.Add(exampleOutPart);
+            Products.Add(new Product(1, "Stove", 500, 6, 10, 5));
+            Products.Add(new Product(2, "Washing Machine", 350, 75, 100, 3));
+            AllParts.Add(new InHouse(1, "Example Inhouse Part", 11.5m, 15, 20, 10, 1001));
+            AllParts.Add(new Outsourced(2, "Example Outsource Part", 22.7m, 15, 45, 10, "ACME Inc"));
 
         }
     }

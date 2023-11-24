@@ -28,7 +28,6 @@ namespace InventoryManagementSystem
             
         }
 
-
         public void addAssociatedPart(Part part)
         {
             AssociatedParts.Add(part);

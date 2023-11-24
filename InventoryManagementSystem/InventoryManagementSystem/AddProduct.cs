@@ -25,10 +25,11 @@ namespace InventoryManagementSystem
         //form setup and gridview binding
         private void SetupProductForm(int productId)
         {
-            productIDTextBox.Text = productId.ToString();
-            productIDTextBox.ReadOnly = true;
-            BindGridView(candidatePartsGridView, Inventory.getAllParts());
-            BindGridView(associatedPartsGridView, addedParts);
+            addPrdIDTextBox.Text = productId.ToString();
+            addPrdIDTextBox.ReadOnly = true;
+            BindGridView(addPrdCandidatePartsGridView, Inventory.getAllParts());
+            BindGridView(addPrdAssociatedPartsGridView, addedParts);
+            this.addPrdAddProductCancelButton.CausesValidation = false;
         }
 
         private void BindGridView(DataGridView gridView, object dataSource)
@@ -43,11 +44,11 @@ namespace InventoryManagementSystem
             {
                 int nextProductId = Inventory.GetNextProductId();
                 int productId = nextProductId;
-                string name = productNameTextBox.Text;
-                int inStock = int.Parse(productInventoryTextBox.Text);
-                decimal price = decimal.Parse(productPriceTextBox.Text);
-                int max = int.Parse(productMaxTextBox.Text);
-                int min = int.Parse(productMinTextBox.Text);
+                string name = addPrdNameTextBox.Text;
+                int inStock = int.Parse(addPrdInventoryTextBox.Text);
+                decimal price = decimal.Parse(addPrdPriceTextBox.Text);
+                int max = int.Parse(addPrdMaxTextBox.Text);
+                int min = int.Parse(addPrdMinTextBox.Text);
 
                 if (max < min)
                 {
@@ -92,13 +93,13 @@ namespace InventoryManagementSystem
 
         private void candidatePartsAddButton_Click(object sender, EventArgs e)
         {
-            Part part = (Part)candidatePartsGridView.CurrentRow.DataBoundItem;
+            Part part = (Part)addPrdCandidatePartsGridView.CurrentRow.DataBoundItem;
             addedParts.Add(part);
         }
 
         private void associatedPartsDeleteButton_Click(object sender, EventArgs e)
         {
-            if (associatedPartsGridView.SelectedRows.Count == 0)
+            if (addPrdAssociatedPartsGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show("You need to press on a row first", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -108,7 +109,7 @@ namespace InventoryManagementSystem
                     MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Part associatedPart = (Part)associatedPartsGridView.CurrentRow.DataBoundItem;
+                    Part associatedPart = (Part)addPrdAssociatedPartsGridView.CurrentRow.DataBoundItem;
                     addedParts.Remove(associatedPart);
                 }
                 else return;
@@ -119,11 +120,11 @@ namespace InventoryManagementSystem
         //perform a search by partId on parts all candidates gridview
         private void candidatePartsSearchButton_Click(object sender, EventArgs e)
         {
-            candidatePartsGridView.ClearSelection();
+            addPrdCandidatePartsGridView.ClearSelection();
 
             //validate input
-            if (string.IsNullOrWhiteSpace(candidatePartsSearchTextBox.Text) ||
-                !int.TryParse(candidatePartsSearchTextBox.Text, out int searchedPart) ||
+            if (string.IsNullOrWhiteSpace(addPrdCandidatePartsSearchTextBox.Text) ||
+                !int.TryParse(addPrdCandidatePartsSearchTextBox.Text, out int searchedPart) ||
                 searchedPart < 1)
             {
                 MessageBox.Show("Please enter a valid Part ID.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -140,7 +141,7 @@ namespace InventoryManagementSystem
 
             //select row with matching partId or throw "Part not found" error
             bool isPartFound = false;
-            foreach (DataGridViewRow row in candidatePartsGridView.Rows)
+            foreach (DataGridViewRow row in addPrdCandidatePartsGridView.Rows)
             {
                 Part part = (Part)row.DataBoundItem;
                 if (part.PartId == matchPart.PartId)
@@ -160,15 +161,65 @@ namespace InventoryManagementSystem
         //enable delete button when row is added
         private void associatedPartsGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
+            addPrdAssociatedPartsDeleteButton.Enabled = addPrdAssociatedPartsGridView.Rows.Count > 0;
         }
 
         private void associatedPartsGridView_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            associatedPartsDeleteButton.Enabled = associatedPartsGridView.Rows.Count > 0;
+            addPrdAssociatedPartsDeleteButton.Enabled = addPrdAssociatedPartsGridView.Rows.Count > 0;
         }
 
-       
+        //Add product form fields validation
+        private void ValidateNumericInput(object sender, string errorMessage)
+        {
+            if (!IsNumeric(((TextBox)sender).Text))
+            {
+                MessageBox.Show(errorMessage, "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ((TextBox)sender).Clear();
+                ((TextBox)sender).Focus();
+            }
+        }
+
+        private void productNameTextBox_Validated(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(addPrdNameTextBox.Text))
+            {
+                MessageBox.Show("The Name field cannot be empty.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                addPrdNameTextBox.Clear();
+                addPrdNameTextBox.Focus();
+            }
+        }
+
+        private void productInventoryTextBox_Validating(object sender, EventArgs e)
+        {
+            ValidateNumericInput(sender, "The Inventory field must have a numeric value.");
+
+        }
+        private void productPriceTextBox_Validating(object sender, EventArgs e)
+        {
+            decimal value;
+            if (!Decimal.TryParse(addPrdPriceTextBox.Text, out value))
+            {
+                MessageBox.Show("The Price field must have a decimal value.", "Invalid Input", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                addPrdPriceTextBox.Clear();
+                addPrdPriceTextBox.Focus();
+            }
+        }
+        private void productMaxTextBox_Validating(object sender, EventArgs e)
+        {
+            ValidateNumericInput(sender, "The Max field must have a numeric value.");
+        }
+
+        private void productMinTextBox_Validating(object sender, EventArgs e)
+        {
+            ValidateNumericInput(sender, "The Min field must have a numeric value.");
+        }
+        private bool IsNumeric(string input)
+        {
+            return int.TryParse(input, out _);
+        }
     }
     }
 

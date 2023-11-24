@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.modifyPrdProductMinTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPrdProductMinLabel = new System.Windows.Forms.Label();
-            this.modifyPrdProductMaxTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPrdProductMaxLabel = new System.Windows.Forms.Label();
-            this.modifyPrdProductPriceTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPrdProductPriceLabel = new System.Windows.Forms.Label();
-            this.modifyPrdProductInventoryTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPrdProductInventoryLabel = new System.Windows.Forms.Label();
-            this.modifyPrdProductNameTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPrdProductNameLabel = new System.Windows.Forms.Label();
-            this.modifyPrdProductIDTextBox = new System.Windows.Forms.TextBox();
-            this.modifyPrdProductIDLabel = new System.Windows.Forms.Label();
-            this.modifyPrdAddProductSaveButton = new System.Windows.Forms.Button();
-            this.modifyPrdAddProductCancelButton = new System.Windows.Forms.Button();
+            this.modifyPrdMinTextBox = new System.Windows.Forms.TextBox();
+            this.modifyPrdMinLabel = new System.Windows.Forms.Label();
+            this.modifyPrdMaxTextBox = new System.Windows.Forms.TextBox();
+            this.modifyPrdMaxLabel = new System.Windows.Forms.Label();
+            this.modifyPrdPriceTextBox = new System.Windows.Forms.TextBox();
+            this.modifyPrdPriceLabel = new System.Windows.Forms.Label();
+            this.modifyPrdInventoryTextBox = new System.Windows.Forms.TextBox();
+            this.modifyPrdInventoryLabel = new System.Windows.Forms.Label();
+            this.modifyPrdNameTextBox = new System.Windows.Forms.TextBox();
+            this.modifyPrdNameLabel = new System.Windows.Forms.Label();
+            this.modifyPrdIDTextBox = new System.Windows.Forms.TextBox();
+            this.modifyPrdIDLabel = new System.Windows.Forms.Label();
+            this.modifyPrdSaveButton = new System.Windows.Forms.Button();
+            this.modifyPrdCancelButton = new System.Windows.Forms.Button();
             this.modifyPrdAssociatedPartsLabel = new System.Windows.Forms.Label();
             this.modifyPrdAssociatedPartsGridView = new System.Windows.Forms.DataGridView();
             this.modifyPrdAssociatedPartsDeleteButton = new System.Windows.Forms.Button();
@@ -50,134 +50,139 @@
             this.modifyPrdCandidatePartsAddButton = new System.Windows.Forms.Button();
             this.modifyPrdCandidatePartsSearchTextBox = new System.Windows.Forms.TextBox();
             this.modifyPrdCandidatePartsSearchButton = new System.Windows.Forms.Button();
-            this.modifyPrdProductLabel = new System.Windows.Forms.Label();
+            this.modifyPrdLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.modifyPrdAssociatedPartsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modifyPrdCandidatePartsGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // modifyPrdProductMinTextBox
+            // modifyPrdMinTextBox
             // 
-            this.modifyPrdProductMinTextBox.Location = new System.Drawing.Point(317, 495);
-            this.modifyPrdProductMinTextBox.Name = "modifyPrdProductMinTextBox";
-            this.modifyPrdProductMinTextBox.Size = new System.Drawing.Size(80, 20);
-            this.modifyPrdProductMinTextBox.TabIndex = 91;
+            this.modifyPrdMinTextBox.Location = new System.Drawing.Point(317, 495);
+            this.modifyPrdMinTextBox.Name = "modifyPrdMinTextBox";
+            this.modifyPrdMinTextBox.Size = new System.Drawing.Size(80, 20);
+            this.modifyPrdMinTextBox.TabIndex = 91;
+            this.modifyPrdMinTextBox.Validated += new System.EventHandler(this.modifyPrdProductMinTextBox_Validating);
             // 
-            // modifyPrdProductMinLabel
+            // modifyPrdMinLabel
             // 
-            this.modifyPrdProductMinLabel.AutoSize = true;
-            this.modifyPrdProductMinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductMinLabel.Location = new System.Drawing.Point(268, 495);
-            this.modifyPrdProductMinLabel.Name = "modifyPrdProductMinLabel";
-            this.modifyPrdProductMinLabel.Size = new System.Drawing.Size(34, 20);
-            this.modifyPrdProductMinLabel.TabIndex = 90;
-            this.modifyPrdProductMinLabel.Text = "Min";
+            this.modifyPrdMinLabel.AutoSize = true;
+            this.modifyPrdMinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdMinLabel.Location = new System.Drawing.Point(268, 495);
+            this.modifyPrdMinLabel.Name = "modifyPrdMinLabel";
+            this.modifyPrdMinLabel.Size = new System.Drawing.Size(34, 20);
+            this.modifyPrdMinLabel.TabIndex = 90;
+            this.modifyPrdMinLabel.Text = "Min";
             // 
-            // modifyPrdProductMaxTextBox
+            // modifyPrdMaxTextBox
             // 
-            this.modifyPrdProductMaxTextBox.Location = new System.Drawing.Point(147, 493);
-            this.modifyPrdProductMaxTextBox.Name = "modifyPrdProductMaxTextBox";
-            this.modifyPrdProductMaxTextBox.Size = new System.Drawing.Size(80, 20);
-            this.modifyPrdProductMaxTextBox.TabIndex = 89;
+            this.modifyPrdMaxTextBox.Location = new System.Drawing.Point(147, 493);
+            this.modifyPrdMaxTextBox.Name = "modifyPrdMaxTextBox";
+            this.modifyPrdMaxTextBox.Size = new System.Drawing.Size(80, 20);
+            this.modifyPrdMaxTextBox.TabIndex = 89;
+            this.modifyPrdMaxTextBox.Validated += new System.EventHandler(this.modifyPrdProductMaxTextBox_Validating);
             // 
-            // modifyPrdProductMaxLabel
+            // modifyPrdMaxLabel
             // 
-            this.modifyPrdProductMaxLabel.AutoSize = true;
-            this.modifyPrdProductMaxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductMaxLabel.Location = new System.Drawing.Point(86, 493);
-            this.modifyPrdProductMaxLabel.Name = "modifyPrdProductMaxLabel";
-            this.modifyPrdProductMaxLabel.Size = new System.Drawing.Size(38, 20);
-            this.modifyPrdProductMaxLabel.TabIndex = 88;
-            this.modifyPrdProductMaxLabel.Text = "Max";
+            this.modifyPrdMaxLabel.AutoSize = true;
+            this.modifyPrdMaxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdMaxLabel.Location = new System.Drawing.Point(86, 493);
+            this.modifyPrdMaxLabel.Name = "modifyPrdMaxLabel";
+            this.modifyPrdMaxLabel.Size = new System.Drawing.Size(38, 20);
+            this.modifyPrdMaxLabel.TabIndex = 88;
+            this.modifyPrdMaxLabel.Text = "Max";
             // 
-            // modifyPrdProductPriceTextBox
+            // modifyPrdPriceTextBox
             // 
-            this.modifyPrdProductPriceTextBox.Location = new System.Drawing.Point(147, 447);
-            this.modifyPrdProductPriceTextBox.Name = "modifyPrdProductPriceTextBox";
-            this.modifyPrdProductPriceTextBox.Size = new System.Drawing.Size(183, 20);
-            this.modifyPrdProductPriceTextBox.TabIndex = 87;
+            this.modifyPrdPriceTextBox.Location = new System.Drawing.Point(147, 447);
+            this.modifyPrdPriceTextBox.Name = "modifyPrdPriceTextBox";
+            this.modifyPrdPriceTextBox.Size = new System.Drawing.Size(183, 20);
+            this.modifyPrdPriceTextBox.TabIndex = 87;
+            this.modifyPrdPriceTextBox.Validated += new System.EventHandler(this.modifyPrdProductPriceTextBox_Validating);
             // 
-            // modifyPrdProductPriceLabel
+            // modifyPrdPriceLabel
             // 
-            this.modifyPrdProductPriceLabel.AutoSize = true;
-            this.modifyPrdProductPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductPriceLabel.ForeColor = System.Drawing.Color.Black;
-            this.modifyPrdProductPriceLabel.Location = new System.Drawing.Point(35, 445);
-            this.modifyPrdProductPriceLabel.Name = "modifyPrdProductPriceLabel";
-            this.modifyPrdProductPriceLabel.Size = new System.Drawing.Size(89, 20);
-            this.modifyPrdProductPriceLabel.TabIndex = 86;
-            this.modifyPrdProductPriceLabel.Text = "Price / Cost";
+            this.modifyPrdPriceLabel.AutoSize = true;
+            this.modifyPrdPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdPriceLabel.ForeColor = System.Drawing.Color.Black;
+            this.modifyPrdPriceLabel.Location = new System.Drawing.Point(35, 445);
+            this.modifyPrdPriceLabel.Name = "modifyPrdPriceLabel";
+            this.modifyPrdPriceLabel.Size = new System.Drawing.Size(89, 20);
+            this.modifyPrdPriceLabel.TabIndex = 86;
+            this.modifyPrdPriceLabel.Text = "Price / Cost";
             // 
-            // modifyPrdProductInventoryTextBox
+            // modifyPrdInventoryTextBox
             // 
-            this.modifyPrdProductInventoryTextBox.Location = new System.Drawing.Point(147, 398);
-            this.modifyPrdProductInventoryTextBox.Name = "modifyPrdProductInventoryTextBox";
-            this.modifyPrdProductInventoryTextBox.Size = new System.Drawing.Size(183, 20);
-            this.modifyPrdProductInventoryTextBox.TabIndex = 85;
+            this.modifyPrdInventoryTextBox.Location = new System.Drawing.Point(147, 398);
+            this.modifyPrdInventoryTextBox.Name = "modifyPrdInventoryTextBox";
+            this.modifyPrdInventoryTextBox.Size = new System.Drawing.Size(183, 20);
+            this.modifyPrdInventoryTextBox.TabIndex = 85;
+            this.modifyPrdInventoryTextBox.Validated += new System.EventHandler(this.modifyPrdProductInventoryTextBox_Validating);
             // 
-            // modifyPrdProductInventoryLabel
+            // modifyPrdInventoryLabel
             // 
-            this.modifyPrdProductInventoryLabel.AutoSize = true;
-            this.modifyPrdProductInventoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductInventoryLabel.Location = new System.Drawing.Point(50, 398);
-            this.modifyPrdProductInventoryLabel.Name = "modifyPrdProductInventoryLabel";
-            this.modifyPrdProductInventoryLabel.Size = new System.Drawing.Size(74, 20);
-            this.modifyPrdProductInventoryLabel.TabIndex = 84;
-            this.modifyPrdProductInventoryLabel.Text = "Inventory";
+            this.modifyPrdInventoryLabel.AutoSize = true;
+            this.modifyPrdInventoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdInventoryLabel.Location = new System.Drawing.Point(50, 398);
+            this.modifyPrdInventoryLabel.Name = "modifyPrdInventoryLabel";
+            this.modifyPrdInventoryLabel.Size = new System.Drawing.Size(74, 20);
+            this.modifyPrdInventoryLabel.TabIndex = 84;
+            this.modifyPrdInventoryLabel.Text = "Inventory";
             // 
-            // modifyPrdProductNameTextBox
+            // modifyPrdNameTextBox
             // 
-            this.modifyPrdProductNameTextBox.Location = new System.Drawing.Point(147, 350);
-            this.modifyPrdProductNameTextBox.Name = "modifyPrdProductNameTextBox";
-            this.modifyPrdProductNameTextBox.Size = new System.Drawing.Size(183, 20);
-            this.modifyPrdProductNameTextBox.TabIndex = 83;
+            this.modifyPrdNameTextBox.Location = new System.Drawing.Point(147, 350);
+            this.modifyPrdNameTextBox.Name = "modifyPrdNameTextBox";
+            this.modifyPrdNameTextBox.Size = new System.Drawing.Size(183, 20);
+            this.modifyPrdNameTextBox.TabIndex = 83;
+            this.modifyPrdNameTextBox.Validated += new System.EventHandler(this.modifyPrdProductNameTextBox_Validated);
             // 
-            // modifyPrdProductNameLabel
+            // modifyPrdNameLabel
             // 
-            this.modifyPrdProductNameLabel.AutoSize = true;
-            this.modifyPrdProductNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductNameLabel.ForeColor = System.Drawing.Color.Black;
-            this.modifyPrdProductNameLabel.Location = new System.Drawing.Point(73, 348);
-            this.modifyPrdProductNameLabel.Name = "modifyPrdProductNameLabel";
-            this.modifyPrdProductNameLabel.Size = new System.Drawing.Size(51, 20);
-            this.modifyPrdProductNameLabel.TabIndex = 82;
-            this.modifyPrdProductNameLabel.Text = "Name";
+            this.modifyPrdNameLabel.AutoSize = true;
+            this.modifyPrdNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdNameLabel.ForeColor = System.Drawing.Color.Black;
+            this.modifyPrdNameLabel.Location = new System.Drawing.Point(73, 348);
+            this.modifyPrdNameLabel.Name = "modifyPrdNameLabel";
+            this.modifyPrdNameLabel.Size = new System.Drawing.Size(51, 20);
+            this.modifyPrdNameLabel.TabIndex = 82;
+            this.modifyPrdNameLabel.Text = "Name";
             // 
-            // modifyPrdProductIDTextBox
+            // modifyPrdIDTextBox
             // 
-            this.modifyPrdProductIDTextBox.Location = new System.Drawing.Point(147, 301);
-            this.modifyPrdProductIDTextBox.Name = "modifyPrdProductIDTextBox";
-            this.modifyPrdProductIDTextBox.Size = new System.Drawing.Size(183, 20);
-            this.modifyPrdProductIDTextBox.TabIndex = 81;
+            this.modifyPrdIDTextBox.Location = new System.Drawing.Point(147, 301);
+            this.modifyPrdIDTextBox.Name = "modifyPrdIDTextBox";
+            this.modifyPrdIDTextBox.Size = new System.Drawing.Size(183, 20);
+            this.modifyPrdIDTextBox.TabIndex = 81;
             // 
-            // modifyPrdProductIDLabel
+            // modifyPrdIDLabel
             // 
-            this.modifyPrdProductIDLabel.AutoSize = true;
-            this.modifyPrdProductIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductIDLabel.Location = new System.Drawing.Point(98, 301);
-            this.modifyPrdProductIDLabel.Name = "modifyPrdProductIDLabel";
-            this.modifyPrdProductIDLabel.Size = new System.Drawing.Size(26, 20);
-            this.modifyPrdProductIDLabel.TabIndex = 80;
-            this.modifyPrdProductIDLabel.Text = "ID";
+            this.modifyPrdIDLabel.AutoSize = true;
+            this.modifyPrdIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdIDLabel.Location = new System.Drawing.Point(98, 301);
+            this.modifyPrdIDLabel.Name = "modifyPrdIDLabel";
+            this.modifyPrdIDLabel.Size = new System.Drawing.Size(26, 20);
+            this.modifyPrdIDLabel.TabIndex = 80;
+            this.modifyPrdIDLabel.Text = "ID";
             // 
-            // modifyPrdAddProductSaveButton
+            // modifyPrdSaveButton
             // 
-            this.modifyPrdAddProductSaveButton.Location = new System.Drawing.Point(981, 784);
-            this.modifyPrdAddProductSaveButton.Name = "modifyPrdAddProductSaveButton";
-            this.modifyPrdAddProductSaveButton.Size = new System.Drawing.Size(104, 41);
-            this.modifyPrdAddProductSaveButton.TabIndex = 79;
-            this.modifyPrdAddProductSaveButton.Text = "Save";
-            this.modifyPrdAddProductSaveButton.UseVisualStyleBackColor = true;
-            this.modifyPrdAddProductSaveButton.Click += new System.EventHandler(this.modifyPrdAddProductSaveButton_Click);
+            this.modifyPrdSaveButton.Location = new System.Drawing.Point(981, 784);
+            this.modifyPrdSaveButton.Name = "modifyPrdSaveButton";
+            this.modifyPrdSaveButton.Size = new System.Drawing.Size(104, 41);
+            this.modifyPrdSaveButton.TabIndex = 79;
+            this.modifyPrdSaveButton.Text = "Save";
+            this.modifyPrdSaveButton.UseVisualStyleBackColor = true;
+            this.modifyPrdSaveButton.Click += new System.EventHandler(this.modifyPrdAddProductSaveButton_Click);
             // 
-            // modifyPrdAddProductCancelButton
+            // modifyPrdCancelButton
             // 
-            this.modifyPrdAddProductCancelButton.Location = new System.Drawing.Point(1104, 784);
-            this.modifyPrdAddProductCancelButton.Name = "modifyPrdAddProductCancelButton";
-            this.modifyPrdAddProductCancelButton.Size = new System.Drawing.Size(104, 41);
-            this.modifyPrdAddProductCancelButton.TabIndex = 78;
-            this.modifyPrdAddProductCancelButton.Text = "Cancel";
-            this.modifyPrdAddProductCancelButton.UseVisualStyleBackColor = true;
-            this.modifyPrdAddProductCancelButton.Click += new System.EventHandler(this.modifyPrdAddProductCancelButton_Click);
+            this.modifyPrdCancelButton.Location = new System.Drawing.Point(1104, 784);
+            this.modifyPrdCancelButton.Name = "modifyPrdCancelButton";
+            this.modifyPrdCancelButton.Size = new System.Drawing.Size(104, 41);
+            this.modifyPrdCancelButton.TabIndex = 78;
+            this.modifyPrdCancelButton.Text = "Cancel";
+            this.modifyPrdCancelButton.UseVisualStyleBackColor = true;
+            this.modifyPrdCancelButton.Click += new System.EventHandler(this.modifyPrdAddProductCancelButton_Click);
             // 
             // modifyPrdAssociatedPartsLabel
             // 
@@ -263,35 +268,36 @@
             this.modifyPrdCandidatePartsSearchButton.UseVisualStyleBackColor = true;
             this.modifyPrdCandidatePartsSearchButton.Click += new System.EventHandler(this.modifyPrdCandidatePartsSearchButton_Click);
             // 
-            // modifyPrdProductLabel
+            // modifyPrdLabel
             // 
-            this.modifyPrdProductLabel.AutoSize = true;
-            this.modifyPrdProductLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifyPrdProductLabel.Location = new System.Drawing.Point(21, 31);
-            this.modifyPrdProductLabel.Name = "modifyPrdProductLabel";
-            this.modifyPrdProductLabel.Size = new System.Drawing.Size(157, 26);
-            this.modifyPrdProductLabel.TabIndex = 69;
-            this.modifyPrdProductLabel.Text = "Modify Product";
+            this.modifyPrdLabel.AutoSize = true;
+            this.modifyPrdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modifyPrdLabel.Location = new System.Drawing.Point(21, 31);
+            this.modifyPrdLabel.Name = "modifyPrdLabel";
+            this.modifyPrdLabel.Size = new System.Drawing.Size(157, 26);
+            this.modifyPrdLabel.TabIndex = 69;
+            this.modifyPrdLabel.Text = "Modify Product";
             // 
             // ModifyProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1269, 890);
-            this.Controls.Add(this.modifyPrdProductMinTextBox);
-            this.Controls.Add(this.modifyPrdProductMinLabel);
-            this.Controls.Add(this.modifyPrdProductMaxTextBox);
-            this.Controls.Add(this.modifyPrdProductMaxLabel);
-            this.Controls.Add(this.modifyPrdProductPriceTextBox);
-            this.Controls.Add(this.modifyPrdProductPriceLabel);
-            this.Controls.Add(this.modifyPrdProductInventoryTextBox);
-            this.Controls.Add(this.modifyPrdProductInventoryLabel);
-            this.Controls.Add(this.modifyPrdProductNameTextBox);
-            this.Controls.Add(this.modifyPrdProductNameLabel);
-            this.Controls.Add(this.modifyPrdProductIDTextBox);
-            this.Controls.Add(this.modifyPrdProductIDLabel);
-            this.Controls.Add(this.modifyPrdAddProductSaveButton);
-            this.Controls.Add(this.modifyPrdAddProductCancelButton);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ClientSize = new System.Drawing.Size(1255, 861);
+            this.Controls.Add(this.modifyPrdMinTextBox);
+            this.Controls.Add(this.modifyPrdMinLabel);
+            this.Controls.Add(this.modifyPrdMaxTextBox);
+            this.Controls.Add(this.modifyPrdMaxLabel);
+            this.Controls.Add(this.modifyPrdPriceTextBox);
+            this.Controls.Add(this.modifyPrdPriceLabel);
+            this.Controls.Add(this.modifyPrdInventoryTextBox);
+            this.Controls.Add(this.modifyPrdInventoryLabel);
+            this.Controls.Add(this.modifyPrdNameTextBox);
+            this.Controls.Add(this.modifyPrdNameLabel);
+            this.Controls.Add(this.modifyPrdIDTextBox);
+            this.Controls.Add(this.modifyPrdIDLabel);
+            this.Controls.Add(this.modifyPrdSaveButton);
+            this.Controls.Add(this.modifyPrdCancelButton);
             this.Controls.Add(this.modifyPrdAssociatedPartsLabel);
             this.Controls.Add(this.modifyPrdAssociatedPartsGridView);
             this.Controls.Add(this.modifyPrdAssociatedPartsDeleteButton);
@@ -300,7 +306,7 @@
             this.Controls.Add(this.modifyPrdCandidatePartsAddButton);
             this.Controls.Add(this.modifyPrdCandidatePartsSearchTextBox);
             this.Controls.Add(this.modifyPrdCandidatePartsSearchButton);
-            this.Controls.Add(this.modifyPrdProductLabel);
+            this.Controls.Add(this.modifyPrdLabel);
             this.Name = "ModifyProduct";
             this.Text = "ModifyProduct";
             ((System.ComponentModel.ISupportInitialize)(this.modifyPrdAssociatedPartsGridView)).EndInit();
@@ -312,20 +318,20 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox modifyPrdProductMinTextBox;
-        private System.Windows.Forms.Label modifyPrdProductMinLabel;
-        private System.Windows.Forms.TextBox modifyPrdProductMaxTextBox;
-        private System.Windows.Forms.Label modifyPrdProductMaxLabel;
-        private System.Windows.Forms.TextBox modifyPrdProductPriceTextBox;
-        private System.Windows.Forms.Label modifyPrdProductPriceLabel;
-        private System.Windows.Forms.TextBox modifyPrdProductInventoryTextBox;
-        private System.Windows.Forms.Label modifyPrdProductInventoryLabel;
-        private System.Windows.Forms.TextBox modifyPrdProductNameTextBox;
-        private System.Windows.Forms.Label modifyPrdProductNameLabel;
-        private System.Windows.Forms.TextBox modifyPrdProductIDTextBox;
-        private System.Windows.Forms.Label modifyPrdProductIDLabel;
-        private System.Windows.Forms.Button modifyPrdAddProductSaveButton;
-        private System.Windows.Forms.Button modifyPrdAddProductCancelButton;
+        private System.Windows.Forms.TextBox modifyPrdMinTextBox;
+        private System.Windows.Forms.Label modifyPrdMinLabel;
+        private System.Windows.Forms.TextBox modifyPrdMaxTextBox;
+        private System.Windows.Forms.Label modifyPrdMaxLabel;
+        private System.Windows.Forms.TextBox modifyPrdPriceTextBox;
+        private System.Windows.Forms.Label modifyPrdPriceLabel;
+        private System.Windows.Forms.TextBox modifyPrdInventoryTextBox;
+        private System.Windows.Forms.Label modifyPrdInventoryLabel;
+        private System.Windows.Forms.TextBox modifyPrdNameTextBox;
+        private System.Windows.Forms.Label modifyPrdNameLabel;
+        private System.Windows.Forms.TextBox modifyPrdIDTextBox;
+        private System.Windows.Forms.Label modifyPrdIDLabel;
+        private System.Windows.Forms.Button modifyPrdSaveButton;
+        private System.Windows.Forms.Button modifyPrdCancelButton;
         private System.Windows.Forms.Label modifyPrdAssociatedPartsLabel;
         public System.Windows.Forms.DataGridView modifyPrdAssociatedPartsGridView;
         private System.Windows.Forms.Button modifyPrdAssociatedPartsDeleteButton;
@@ -334,6 +340,6 @@
         private System.Windows.Forms.Button modifyPrdCandidatePartsAddButton;
         private System.Windows.Forms.TextBox modifyPrdCandidatePartsSearchTextBox;
         private System.Windows.Forms.Button modifyPrdCandidatePartsSearchButton;
-        public System.Windows.Forms.Label modifyPrdProductLabel;
+        public System.Windows.Forms.Label modifyPrdLabel;
     }
 }

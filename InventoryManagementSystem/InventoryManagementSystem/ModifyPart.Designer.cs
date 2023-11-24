@@ -237,7 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 760);
+            this.ClientSize = new System.Drawing.Size(509, 555);
             this.Controls.Add(this.cancelModifyPartBtn);
             this.Controls.Add(this.saveModifyPartBtn);
             this.Controls.Add(this.modifyPartMachineCompanyTextBox);

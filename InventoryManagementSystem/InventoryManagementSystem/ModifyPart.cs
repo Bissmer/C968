@@ -20,6 +20,7 @@ namespace InventoryManagementSystem
             modifyPartMachineCompanyTextBox.Text = inHousePart.MachineID.ToString();
 
             modifyPartInHouseRadio.Checked = true;
+            this.cancelModifyPartBtn.CausesValidation = false;
         }
 
         //constructor for the Outsourced radio checked
@@ -35,6 +36,7 @@ namespace InventoryManagementSystem
             modifyPartMachineCompanyTextBox.Text = outsourcedPart.CompanyName;
 
             modifyPartOutsourcedRadio.Checked = true;
+            this.cancelModifyPartBtn.CausesValidation = false;
         }
 
         private void saveModifyPartBtn_Click(object sender, System.EventArgs e)

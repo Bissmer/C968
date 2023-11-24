@@ -11,7 +11,6 @@ namespace InventoryManagementSystem
         {
             InitializeComponent();
             Inventory.ExampleItems();
-            //initialized datasource for parts and products
             partsGridView.DataSource = Inventory.getAllParts();
             productsGridView.DataSource = Inventory.getProducts();
         }
@@ -28,15 +27,19 @@ namespace InventoryManagementSystem
         private void modifyPartsMainButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InventoryManagementSystem.InHouse))
+            var selectedPart = partsGridView.CurrentRow.DataBoundItem;
+
+            if (selectedPart is InHouse inhousePart)
             {
-                InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
                 new ModifyPart(inhousePart).ShowDialog();
+            }
+            else if (selectedPart is Outsourced outsourcedPart)
+            {
+                new ModifyPart(outsourcedPart).ShowDialog();
             }
             else
             {
-                Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
-                new ModifyPart(outsourcedPart).ShowDialog();
+                MessageBox.Show("Invalid part selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -58,23 +61,6 @@ namespace InventoryManagementSystem
             UpdateButtonStateBasedOnSelection(productsGridView, mainFormModifyProductsButton, mainFormDeleteProductsButton);
         }
 
-        private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InHouse))
-                {
-                    InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
-                    Inventory.DeletePart(inhousePart.PartId);
-                }
-                else
-                {
-                    Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
-                    Inventory.DeletePart(outsourcedPart.PartId);
-                }
-            }
-        }
 
         private void mainFormAddProductsButton_Click(object sender, EventArgs e)
         {
@@ -133,6 +119,7 @@ namespace InventoryManagementSystem
             }
         }
 
+        //perform a search by productId on Products gridview
         private void mainFormProductsSearchButton_Click(object sender, EventArgs e)
         {
             productsGridView.ClearSelection();
@@ -171,12 +158,29 @@ namespace InventoryManagementSystem
             }
         }
 
+        private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (partsGridView.CurrentRow.DataBoundItem.GetType() == typeof(InHouse))
+                {
+                    InHouse inhousePart = (InHouse)partsGridView.CurrentRow.DataBoundItem;
+                    Inventory.DeletePart(inhousePart.PartId);
+                }
+                else
+                {
+                    Outsourced outsourcedPart = (Outsourced)partsGridView.CurrentRow.DataBoundItem;
+                    Inventory.DeletePart(outsourcedPart.PartId);
+                }
+            }
+        }
         private void mainFormDeleteProductsButton_Click(object sender, EventArgs e)
         {
             Product product = (Product)productsGridView.CurrentRow.DataBoundItem;
             if (product.AssociatedParts.Count > 0)
             {
-                MessageBox.Show("Product has associated parts. Please remove all associated parts before deleting product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A product has associated parts. Please delete all associated parts before deleting product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
