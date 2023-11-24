@@ -15,6 +15,7 @@ namespace InventoryManagementSystem
             productsGridView.DataSource = Inventory.getProducts();
         }
 
+        //add and modify part buttons
         private void addPartsMainButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -61,7 +62,7 @@ namespace InventoryManagementSystem
             UpdateButtonStateBasedOnSelection(productsGridView, mainFormModifyProductsButton, mainFormDeleteProductsButton);
         }
 
-
+        //add and modify product buttons
         private void mainFormAddProductsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -158,6 +159,7 @@ namespace InventoryManagementSystem
             }
         }
 
+        //delete part and product buttons
         private void mainFormDeletePartsButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this part?", "Delete Part", MessageBoxButtons.YesNo);
@@ -196,6 +198,7 @@ namespace InventoryManagementSystem
             }
         }
 
+        //application exit button
         private void appExit_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.YesNo);

@@ -135,8 +135,8 @@ namespace InventoryManagementSystem
         {
             Products.Add(new Product(1, "Stove", 500, 6, 10, 5));
             Products.Add(new Product(2, "Washing Machine", 350, 75, 100, 3));
-            AllParts.Add(new InHouse(1, "Example Inhouse Part", 11.5m, 15, 20, 10, 1001));
-            AllParts.Add(new Outsourced(2, "Example Outsource Part", 22.7m, 15, 45, 10, "ACME Inc"));
+            AllParts.Add(new InHouse(1, "Sample Inhouse Part", 11.5m, 15, 20, 10, 1001));
+            AllParts.Add(new Outsourced(2, "Sample Outsource Part", 22.7m, 15, 45, 10, "ACME Inc"));
 
         }
     }
